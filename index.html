@@ -373,7 +373,7 @@ a.rb.w{background:var(--bll);color:var(--bl);border:1px solid #93c5fd}
 <div class="tb"><button class="tbb" data-go="pg-p3">‹</button><span class="tbt">Día 4 · Cola de Caballo</span><button class="tbb" data-go="pg-ph">⌂</button></div>
 <div class="ct">
   <div class="dh"><div class="dh-n">Día 4 · Miércoles, 1 de Abril 2026</div><div class="dh-t">COLA DE CABALLO — ORDESA</div><div class="dh-s">Canfranc → Torla → Pradera de Ordesa · ~82 km</div><div class="dh-chips"><span class="dh-chip">🚌 Bus lanzadera</span><span class="dh-chip">🥾 17-18 km · 7-8h</span><span class="dh-chip">🥪 Bocadillos</span></div></div>
-  <a class="mb" href="https://www.meteoblue.com/es/espana/aragon/torla_espana_3108285" target="_blank"><span class="mb-i">🌤</span><span class="mb-t">Previsión — Torla-Ordesa</span><span class="mb-a">↗</span></a>
+  <a class="mb" href="https://www.meteoblue.com/es/tiempo/semana/torla_espana_3107923" target="_blank"><span class="mb-i">🌤</span><span class="mb-t">Previsión — Torla-Ordesa</span><span class="mb-a">↗</span></a>
   <div class="ib warn"><div class="ibt">⚠ Acceso obligatorio Semana Santa</div><ul><li>Aparcar en Torla · bus OrdesaBus (~€6 ida/vuelta).</li><li>Billetes <strong>solo presenciales</strong> — sin venta online.</li><li>Taquillas abren 5:45h · buses desde 6:00h.</li></ul></div>
   <a class="ab web" href="https://www.ordesabus.com" target="_blank"><span class="ab-i">🚌</span><span class="ab-t">Horarios actualizados — ordesabus.com</span><span class="ab-a">↗</span></a>
   <div class="lbl">Conducción Canfranc → Torla</div>
@@ -559,6 +559,7 @@ function tap(el, e) {
         return;
       }
       if (el.dataset.toggle) {
+        e.preventDefault();
         var body = el.nextElementSibling;
         var arr  = el.querySelector('.arr');
         if (body) body.classList.toggle('open');
