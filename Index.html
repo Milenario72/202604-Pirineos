@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Pirineo SS2026</title>
+<style>
+:root{--bl:#2c5f8a;--bld:#1a3d5c;--blm:#3d7ab5;--bll:#deedf8;--blx:#f0f7fd;--gr:#16a34a;--grl:#f0fdf4;--grd:#15803d;--or:#d97706;--orl:#fffbeb;--sl:#1e293b;--slm:#475569;--sll:#94a3b8;--bg:#f1f5f9;--wh:#fff;--bd:#e2e8f0;--r:14px;--rs:10px;--sh:0 2px 12px rgba(30,41,59,.10)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg)}
+body{font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;color:var(--sl);line-height:1.5;font-size:15px;-webkit-text-size-adjust:100%}
+button{background:none;border:none;padding:0;margin:0;font:inherit;color:inherit;cursor:pointer;-webkit-appearance:none;appearance:none;text-align:left;display:block;width:100%}
+a{color:inherit;text-decoration:none}
+
+/* PAGE SYSTEM — simple hidden attribute toggle */
+.pg{display:none;max-width:430px;margin:0 auto;min-height:100vh;background:var(--bg)}
+.pg.on{display:block}
+
+/* TOPBAR */
+.tb{background:var(--bld);color:#fff;display:flex;align-items:center;gap:8px;padding:10px 12px;min-height:50px;position:sticky;top:0;z-index:100}
+.tbb{width:36px;height:36px;flex-shrink:0;background:rgba(255,255,255,.18);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff}
+.tbt{flex:1;font-size:15px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* HOME HEADER */
+.hdr{background:linear-gradient(160deg,var(--bld) 0%,var(--bl) 65%,var(--blm) 100%);color:#fff;padding:36px 20px 24px;position:relative;overflow:hidden}
+.hdr::after{content:'';position:absolute;top:-50px;right:-50px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.05);pointer-events:none}
+.hdr-ey{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:8px}
+.hdr-t{font-size:30px;font-weight:900;letter-spacing:-1px;line-height:1.05;margin-bottom:4px}
+.hdr-s{font-size:14px;color:rgba(255,255,255,.75);font-style:italic;margin-bottom:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:4px 11px;font-size:12px;color:rgba(255,255,255,.9)}
+
+/* CONTENT */
+.ct{padding:16px 14px calc(80px + env(safe-area-inset-bottom,0px))}
+
+/* LABEL */
+.lbl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--slm);margin:20px 0 8px 2px}
+.lbl:first-child{margin-top:0}
+
+/* SUMMARY TABLE */
+.stw{background:var(--wh);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh)}
+.sr{display:flex;align-items:stretch;width:100%;border-bottom:1px solid var(--bd);background:var(--wh)}
+.sr:last-child{border-bottom:none}
+.sr:active{background:var(--blx)}
+.sdb{width:54px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 4px;color:#fff}
+.sdb-n{font-size:18px;font-weight:800;line-height:1}
+.sdb-d{font-size:9px;font-weight:600;opacity:.8;text-transform:uppercase;margin-top:2px}
+.sdb-f{font-size:9px;opacity:.7;margin-top:1px}
+.srb{flex:1;padding:10px;display:flex;flex-direction:column;gap:3px}
+.sr-t{font-size:14px;font-weight:700;color:var(--sl);line-height:1.2}
+.sr-s{font-size:12px;color:var(--slm)}
+.sr-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.tag{font-size:10px;font-weight:600;padding:2px 7px;border-radius:10px;background:var(--bll);color:var(--bl)}
+.tag.g{background:#dcfce7;color:var(--grd)}.tag.o{background:#fef9c3;color:#92400e}
+.sa{color:var(--sll);font-size:16px;align-self:center;padding-right:12px;flex-shrink:0}
+
+/* ALERT */
+.ac{border-radius:var(--rs);overflow:hidden;margin-bottom:8px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.ach{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;font-size:13px;font-weight:700;color:#fff;width:100%}
+.ac.warn .ach{background:var(--or)}.ac.info .ach{background:var(--bl)}.ac.ok .ach{background:var(--gr)}
+.arr{font-size:18px;transition:transform .2s}.arr.open{transform:rotate(180deg)}
+.acb{display:none;padding:12px 14px;font-size:13px;line-height:1.5}
+.acb.open{display:block}
+.ac.warn .acb{background:var(--orl)}.ac.info .acb{background:var(--blx)}.ac.ok .acb{background:var(--grl)}
+.acb ul{margin:6px 0 0 14px}.acb li{margin-bottom:4px}
+
+/* RESERVAS */
+.rlc{background:var(--wh);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh)}
+.rlh{background:var(--bl);color:#fff;padding:10px 14px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+.rr{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--bd)}
+.rr:last-child{border-bottom:none}.rr:nth-child(even){background:#fafcfe}
+.rdot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.rdot.d{background:var(--gr)}.rdot.p{background:var(--or)}.rdot.n{background:var(--sll)}
+.ri{flex:1;min-width:0}.rw{font-size:11px;color:var(--sll)}.rn{font-size:13px;font-weight:600}
+.rb{font-size:10px;font-weight:700;padding:3px 9px;border-radius:12px;white-space:nowrap;flex-shrink:0;display:inline-block}
+.rb.d{background:#dcfce7;color:var(--grd)}.rb.p{background:#fef9c3;color:#92400e}.rb.n{background:#f1f5f9;color:var(--sll)}
+a.rb.c{background:var(--orl);color:var(--or);border:1px solid #fcd34d}
+a.rb.w{background:var(--bll);color:var(--bl);border:1px solid #93c5fd}
+
+/* DAY HERO */
+.dh{background:linear-gradient(135deg,var(--bld) 0%,var(--blm) 100%);border-radius:var(--r);padding:18px;color:#fff;margin-bottom:16px;box-shadow:var(--sh)}
+.dh-n{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:4px}
+.dh-t{font-size:21px;font-weight:900;letter-spacing:-.5px;line-height:1.1;margin-bottom:4px}
+.dh-s{font-size:12px;color:rgba(255,255,255,.72);font-style:italic;margin-bottom:12px}
+.dh-chips{display:flex;flex-wrap:wrap;gap:5px}
+.dh-chip{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:3px 10px;font-size:11px;color:rgba(255,255,255,.9)}
+
+/* METEO */
+.mb{display:flex;align-items:center;gap:10px;background:#e0f2fe;border:1px solid #7dd3fc;border-radius:var(--rs);padding:11px 14px;font-size:13px;font-weight:600;color:#075985;margin-bottom:8px;display:flex}
+.mb-i{font-size:20px;flex-shrink:0}.mb-t{flex:1}.mb-a{color:#38bdf8}
+.mbr{display:flex;gap:6px;margin-bottom:8px}
+.mbr .mb{margin-bottom:0;flex:1;padding:10px}
+
+/* TRANSPORT */
+.tc{background:var(--wh);border-radius:var(--rs);overflow:hidden;border:1px solid var(--bd);margin-bottom:8px}
+.tr{display:flex;align-items:center;gap:6px;padding:8px 12px;border-bottom:1px solid #f1f5f9;font-size:12.5px}
+.tr:last-child{border-bottom:none;background:#f0f4f8;font-weight:700;color:var(--bl)}
+.tf{flex:1}.tt{font-size:11px;color:var(--bl);font-weight:600;background:var(--blx);padding:2px 6px;border-radius:4px;white-space:nowrap}.tk{font-size:11px;color:var(--sll);white-space:nowrap}
+
+/* ACTION BUTTONS */
+.ab{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:var(--rs);font-size:13px;font-weight:600;margin-bottom:8px;width:100%}
+.ab:active{opacity:.75}
+.ab-i{font-size:20px;flex-shrink:0}.ab-t{flex:1}.ab-a{font-size:14px;opacity:.6}
+.ab.maps{background:var(--grl);border:1px solid #86efac;color:#166534}
+.ab.wil{background:#fff7ed;border:1px solid #fdba74;color:#c2410c}
+.ab.web{background:var(--blx);border:1px solid #93c5fd;color:var(--bl)}
+.ab.call{background:var(--grl);border:1px solid #86efac;color:var(--grd)}
+
+/* SCHEDULE */
+.sc{background:var(--wh);border-radius:var(--rs);overflow:hidden;border:1px solid var(--bd)}
+.si{display:flex;align-items:flex-start;gap:8px;padding:9px 12px;border-bottom:1px solid #f8fafc;font-size:13px}
+.si:last-child{border-bottom:none}
+.si.hi{background:#fffbeb}.si.br{background:var(--grl)}.si.wa{background:#fff7ed}
+.st{font-size:11px;font-weight:700;color:var(--bl);min-width:46px;flex-shrink:0;padding-top:1px}
+.si-i{font-size:15px;flex-shrink:0;padding-top:1px}.si-t{flex:1;line-height:1.4}
+
+/* REST CARDS */
+.rc{background:var(--wh);border-radius:var(--rs);border:1px solid var(--bd);overflow:hidden;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+.rc.res{border-left:4px solid var(--gr)}.rc.pend{border-left:4px solid var(--or)}.rc.neu{border-left:4px solid var(--bl)}
+.rct{padding:11px 14px 0}.rcs{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:3px}
+.rcs.g{color:var(--grd)}.rcs.o{color:var(--or)}.rcs.b{color:var(--bl)}
+.rcn{font-size:15px;font-weight:800;color:var(--sl);margin-bottom:4px}
+.rcd{font-size:12.5px;color:var(--slm);line-height:1.5;padding:0 14px 12px}
+.rca{display:flex;gap:6px;padding:0 14px 12px;flex-wrap:wrap}
+.rab{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:20px;font-size:12px;font-weight:600}
+.rab.call{background:var(--bl);color:#fff}.rab.callg{background:var(--gr);color:#fff}.rab.webr{background:var(--bll);color:var(--bl)}
+
+/* INFO BOXES */
+.ib{border-radius:var(--rs);padding:12px 14px;font-size:13px;line-height:1.5;margin-bottom:10px}
+.ibt{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+.ib.warn{background:var(--orl);border:1px solid #fcd34d}.ib.warn .ibt{color:var(--or)}
+.ib.info{background:var(--blx);border:1px solid #93c5fd}.ib.info .ibt{color:var(--bl)}
+.ib.ok{background:var(--grl);border:1px solid #86efac}.ib.ok .ibt{color:var(--grd)}
+.ib ul{margin:6px 0 0 14px}.ib li{margin-bottom:4px}
+
+/* PHOTO */
+.pb{background:#1c1c2e;border-radius:var(--rs);padding:14px;font-size:12.5px;color:#d0e4f0;line-height:1.65}
+.pbt{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#7eb3d8;margin-bottom:8px}
+.pi{margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.08)}
+.pi:last-child{margin:0;padding:0;border:none}
+.pio{font-weight:700;color:#90cbf0;font-size:12px}.pia{color:#94a3b8;font-size:11.5px;font-style:italic}
+
+/* CARD BLOCK */
+.cb{background:var(--wh);border-radius:var(--rs);border:1px solid var(--bd);padding:12px 14px;margin-bottom:8px;font-size:13px;line-height:1.6;color:var(--slm)}
+.cb strong{color:var(--sl)}
+
+/* CHECKLIST */
+.chs{background:var(--wh);border-radius:var(--rs);border:1px solid var(--bd);padding:13px 14px;margin-bottom:10px}
+.chs h4{font-size:11px;font-weight:700;color:var(--bl);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--bd)}
+.chs ul{margin:0 0 0 14px}.chs li{font-size:13px;margin-bottom:4px}
+
+/* PHOTO ROW */
+.pr{background:var(--wh);border-radius:6px;border-left:3px solid var(--bl);padding:10px 12px;margin-bottom:8px}
+.pro{font-size:13px;font-weight:700;color:var(--bl)}.prs{font-size:12px;color:var(--slm);margin:2px 0}.pra{font-size:11.5px;color:var(--sll);font-style:italic}
+
+/* PREV/NEXT */
+.pnrow{display:flex;gap:8px;margin-top:20px}
+.pnrow .ab{flex:1;justify-content:center}
+
+/* BOTTOM NAV */
+.bnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:rgba(26,61,92,.95);display:flex;justify-content:space-around;align-items:center;padding:8px 4px calc(8px + env(safe-area-inset-bottom,0px));z-index:200;box-shadow:0 -2px 12px rgba(0,0,0,.2)}
+.nb{display:flex;flex-direction:column;align-items:center;gap:2px;color:rgba(255,255,255,.7);font-size:9px;font-weight:600;padding:4px 5px;border-radius:10px;min-width:34px;width:auto}
+.nb span:first-child{font-size:16px}
+.nb.on{background:rgba(255,255,255,.18);color:#fff}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ PAGE: HOME ══════════════ -->
+<div class="pg on" id="pg-ph">
+<div class="hdr">
+  <div class="hdr-ey">Itinerario · Madrid → Canfranc</div>
+  <div class="hdr-t">PIRINEO<br>ARAGONÉS</div>
+  <div class="hdr-s">Semana Santa 2026</div>
+  <div class="chips">
+    <span class="chip">🏨 Barceló Canfranc</span>
+    <span class="chip">📅 29 Mar – 3 Abr</span>
+    <span class="chip">5 noches</span>
+  </div>
+</div>
+<div class="ct">
+  <div class="lbl">⚠ Avisos del viaje</div>
+  <div class="ac warn">
+    <button class="ach" data-toggle="1">⚠ Leer antes de salir <span class="arr open">▾</span></button>
+    <div class="acb open"><ul>
+      <li><strong>Ordesa (Mié 1 Abr):</strong> bus lanzadera desde Torla, sin venta online.</li>
+      <li><strong>Sansanet (Lun 30):</strong> sin cobertura móvil — descarga Wikiloc antes.</li>
+      <li><strong>Gasolina:</strong> repostar en Jaca. Sin gasolinera en Hecho/Ansó.</li>
+      <li><strong>Francia (días 2 y 3):</strong> DNI/pasaporte + efectivo euros.</li>
+      <li><strong>Bocadillos Ordesa:</strong> comprar martes tarde en Aliprox (cierra 20h).</li>
+    </ul></div>
+  </div>
+
+  <div class="lbl">Días del viaje</div>
+  <div class="stw">
+    <button class="sr" data-go="pg-p1">
+      <div class="sdb" style="background:#1a3d5c"><div class="sdb-n">1</div><div class="sdb-d">DOM</div><div class="sdb-f">29 Mar</div></div>
+      <div class="srb"><div class="sr-t">Llegada a Canfranc</div><div class="sr-s">Madrid → Jaca → Canfranc · ~453 km</div><div class="sr-tags"><span class="tag">🍽 Rosa Rosae 14:30h</span><span class="tag o">⚠ Pendiente reservar</span></div></div>
+      <div class="sa">›</div>
+    </button>
+    <button class="sr" data-go="pg-p2">
+      <div class="sdb" style="background:#1e4d7a"><div class="sdb-n">2</div><div class="sdb-d">LUN</div><div class="sdb-f">30 Mar</div></div>
+      <div class="srb"><div class="sr-t">Ibón de Estanés</div><div class="sr-s">Ruta circular · 12,5 km · +580 m · 🇫🇷</div><div class="sr-tags"><span class="tag">🍽 La Internacional</span><span class="tag g">✓ Reservado</span></div></div>
+      <div class="sa">›</div>
+    </button>
+    <button class="sr" data-go="pg-p3">
+      <div class="sdb" style="background:#225f96"><div class="sdb-n">3</div><div class="sdb-d">MAR</div><div class="sdb-f">31 Mar</div></div>
+      <div class="srb"><div class="sr-t">Lescun · Pau · Fort du Portalet</div><div class="sr-s">Día en Francia · ~183 km</div><div class="sr-tags"><span class="tag o">Le Majestic: pdte</span><span class="tag g">1928: ✓</span></div></div>
+      <div class="sa">›</div>
+    </button>
+    <button class="sr" data-go="pg-p4">
+      <div class="sdb" style="background:#2c6faa"><div class="sdb-n">4</div><div class="sdb-d">MIÉ</div><div class="sdb-f">1 Abr</div></div>
+      <div class="srb"><div class="sr-t">Cola de Caballo — Ordesa</div><div class="sr-s">Bus lanzadera desde Torla · 7-8h</div><div class="sr-tags"><span class="tag">🥪 Bocadillos en ruta</span></div></div>
+      <div class="sa">›</div>
+    </button>
+    <button class="sr" data-go="pg-p5">
+      <div class="sdb" style="background:#357cbf"><div class="sdb-n">5</div><div class="sdb-d">JUE</div><div class="sdb-f">2 Abr</div></div>
+      <div class="srb"><div class="sr-t">Selva de Oza · Ansó · Siresa</div><div class="sr-s">Valles Occidentales · ~150 km</div><div class="sr-tags"><span class="tag">🍽 Canteré Hecho</span><span class="tag g">⭐ Michelin ✓</span></div></div>
+      <div class="sa">›</div>
+    </button>
+    <button class="sr" data-go="pg-p6">
+      <div class="sdb" style="background:#3d8ed4"><div class="sdb-n">6</div><div class="sdb-d">VIE</div><div class="sdb-f">3 Abr</div></div>
+      <div class="srb"><div class="sr-t">Regreso a Madrid</div><div class="sr-s">Canfranc → Madrid · ~453 km</div><div class="sr-tags"><span class="tag">Parada opcional Zaragoza</span></div></div>
+      <div class="sa">›</div>
+    </button>
+  </div>
+
+  <div class="lbl" style="margin-top:20px">Estado de reservas</div>
+  <div class="rlc">
+    <div class="rlh">Restaurantes</div>
+    <div class="rr"><div class="rdot p"></div><div class="ri"><div class="rw">Dom 29 · Comida 14:30h</div><div class="rn">Rosa Rosae — Jaca</div></div><a class="rb c" href="tel:+34623409004">📞 Llamar</a></div>
+    <div class="rr"><div class="rdot d"></div><div class="ri"><div class="rw">Lun 30 · Comida 14:45h</div><div class="rn">La Internacional — Barceló</div></div><span class="rb d">✓ Reservado</span></div>
+    <div class="rr"><div class="rdot p"></div><div class="ri"><div class="rw">Mar 31 · Comida ~14:30h</div><div class="rn">Le Majestic — Pau</div></div><a class="rb w" href="https://www.thefork.es/buscar?q=le+majestic+pau" target="_blank">TheFork ↗</a></div>
+    <div class="rr"><div class="rdot d"></div><div class="ri"><div class="rw">Mar 31 · Cena 21:15h</div><div class="rn">Restaurante 1928 — Barceló</div></div><span class="rb d">✓ Reservado</span></div>
+    <div class="rr"><div class="rdot n"></div><div class="ri"><div class="rw">Mié 1 · Cena ~20:30h</div><div class="rn">El Internacional — Barceló</div></div><span class="rb n">Sin reserva</span></div>
+    <div class="rr"><div class="rdot d"></div><div class="ri"><div class="rw">Jue 2 · Comida 14:30h</div><div class="rn">Canteré — Hecho</div></div><span class="rb d">✓ Reservado</span></div>
+  </div>
+
+  <div class="lbl" style="margin-top:20px">Accesos rápidos</div>
+  <button class="ab web" data-go="pg-pc"><span class="ab-i">✅</span><span class="ab-t">Checklist equipamiento</span><span class="ab-a">›</span></button>
+  <button class="ab web" data-go="pg-pf"><span class="ab-i">📷</span><span class="ab-t">Resumen fotográfico Canon R7</span><span class="ab-a">›</span></button>
+  <a class="ab maps" href="https://www.barcelo.com/es-es/barcelo-canfranc-estacion/" target="_blank"><span class="ab-i">🏨</span><span class="ab-t">Barceló Canfranc — web hotel</span><span class="ab-a">↗</span></a>
+  <a class="ab call" href="tel:+34974561900"><span class="ab-i">📞</span><span class="ab-t">Llamar al hotel · +34 974 56 19 00</span><span class="ab-a">↗</span></a>
+</div>
+<nav class="bnav">
+  <button class="nb on" data-go="pg-ph"><span>🏠</span><span>Inicio</span></button>
+  <button class="nb" data-go="pg-p1"><span>1</span><span>Dom</span></button>
+  <button class="nb" data-go="pg-p2"><span>2</span><span>Lun</span></button>
+  <button class="nb" data-go="pg-p3"><span>3</span><span>Mar</span></button>
+  <button class="nb" data-go="pg-p4"><span>4</span><span>Mié</span></button>
+  <button class="nb" data-go="pg-p5"><span>5</span><span>Jue</span></button>
+  <button class="nb" data-go="pg-p6"><span>6</span><span>Vie</span></button>
+  <button class="nb" data-go="pg-pc"><span>✅</span><span>Lista</span></button>
+</nav>
+</div>
+
+<!-- ══════════════ PAGE: DÍA 1 ══════════════ -->
+<div class="pg" id="pg-p1">
+<div class="tb"><button class="tbb" data-go="pg-ph">‹</button><span class="tbt">Día 1 · Llegada a Canfranc</span><button class="tbb" data-go="pg-ph">⌂</button></div>
+<div class="ct">
+  <div class="dh"><div class="dh-n">Día 1 · Domingo, 29 de Marzo 2026</div><div class="dh-t">LLEGADA A CANFRANC</div><div class="dh-s">Madrid → Jaca → Canfranc Estación · ~453 km</div><div class="dh-chips"><span class="dh-chip">🚗 453 km · ~4h05</span><span class="dh-chip">🍽 Rosa Rosae 14:30h</span><span class="dh-chip">⚠ Pendiente reservar</span></div></div>
+  <a class="mb" href="https://www.meteoblue.com/es/espana/aragon/canfranc_espana_2520521" target="_blank"><span class="mb-i">🌤</span><span class="mb-t">Previsión del tiempo — Canfranc</span><span class="mb-a">↗</span></a>
+  <div class="lbl">Conducción</div>
+  <div class="tc">
+    <div class="tr"><span class="tf">Madrid → Zaragoza (AP-2)</span><span class="tt">~2h10</span><span class="tk">300km</span></div>
+    <div class="tr"><span class="tf">Zaragoza → Huesca</span><span class="tt">~50min</span><span class="tk">70km</span></div>
+    <div class="tr"><span class="tf">Huesca → Jaca (A-23)</span><span class="tt">~40min</span><span class="tk">55km</span></div>
+    <div class="tr"><span class="tf">Jaca → Canfranc (N-330a)</span><span class="tt">~25min</span><span class="tk">28km</span></div>
+    <div class="tr"><span class="tf">TOTAL</span><span class="tt">~4h05</span><span class="tk">453km</span></div>
+  </div>
+  <a class="ab maps" href="https://maps.google.com/?saddr=Madrid&daddr=Jaca+to:Canfranc+Estacion&travelmode=driving" target="_blank"><span class="ab-i">🗺</span><span class="ab-t">Ruta completa en Google Maps</span><span class="ab-a">↗</span></a>
+  <div class="ib warn"><div class="ibt">⚠ Conducción</div><ul><li>Salida recomendada <strong>8:30-9:00h</strong> — denso a partir de las 9:30h.</li><li>Gasolinera en Zaragoza o Huesca, no en Jaca para no llegar tarde.</li><li>Radar fijo A-23 entre Jaca y Huesca (Caldearenas).</li></ul></div>
+  <div class="lbl">Horario</div>
+  <div class="sc">
+    <div class="si br"><span class="st">Antes</span><span class="si-i">🍳</span><span class="si-t">Desayuno en casa antes de partir.</span></div>
+    <div class="si"><span class="st">8:30h</span><span class="si-i">🚗</span><span class="si-t">Salida de Madrid por A-2/AP-2/A-23.</span></div>
+    <div class="si"><span class="st">10:45h</span><span class="si-i">⛽</span><span class="si-t">Parada Zaragoza/Huesca — café y gasolinera.</span></div>
+    <div class="si"><span class="st">13:00h</span><span class="si-i">🏰</span><span class="si-t">Jaca. Paseo por el casco histórico o la Ciudadela.</span></div>
+    <div class="si hi"><span class="st">14:30h</span><span class="si-i">🍽</span><span class="si-t"><strong>COMIDA — Rosa Rosae, Jaca.</strong></span></div>
+    <div class="si"><span class="st">16:30h</span><span class="si-i">🏨</span><span class="si-t">Check-in en el hotel.</span></div>
+    <div class="si"><span class="st">17:15h</span><span class="si-i">🚶</span><span class="si-t">Paseo de los Melancólicos (~40 min, llano).</span></div>
+    <div class="si"><span class="st">18:00h</span><span class="si-i">🏛</span><span class="si-t">Visita interior de la Estación (gratuito).</span></div>
+    <div class="si"><span class="st">20:00h</span><span class="si-i">📷</span><span class="si-t">Hora dorada sobre la estación (hasta 20:45h).</span></div>
+    <div class="si"><span class="st">20:30h</span><span class="si-i">🍷</span><span class="si-t">Cena en el hotel o en Jaca.</span></div>
+  </div>
+  <div class="lbl" style="margin-top:18px">Restaurantes</div>
+  <div class="rc pend"><div class="rct"><div class="rcs o">■ Comida 14:30h · Pendiente reservar</div><div class="rcn">Rosa Rosae — Jaca</div></div><div class="rcd">C/ Autonomía de Aragón 15 (Parque San Lure). Cocina creativa, menú ~€20-28. Abre Jue-Dom.</div><div class="rca"><a class="rab call" href="tel:+34623409004">📞 +34 623 40 90 04</a></div></div>
+  <div class="rc neu"><div class="rct"><div class="rcs b">■ Cena · Opciones</div><div class="rcn">El Internacional — Barceló Canfranc</div></div><div class="rcd">En el propio hotel. Trucha imperial, migas del pastor. 20:00-22:00h.</div><div class="rca"><a class="rab call" href="tel:+34974561900">📞 Hotel</a></div></div>
+  <div class="pnrow"><button class="ab maps" data-go="pg-ph"><span class="ab-i">⌂</span><span class="ab-t">Inicio</span></button><button class="ab maps" data-go="pg-p2"><span class="ab-t">Día 2 ›</span></button></div>
+</div>
+</div>
+
+<!-- ══════════════ PAGE: DÍA 2 ══════════════ -->
+<div class="pg" id="pg-p2">
+<div class="tb"><button class="tbb" data-go="pg-p1">‹</button><span class="tbt">Día 2 · Ibón de Estanés</span><button class="tbb" data-go="pg-ph">⌂</button></div>
+<div class="ct">
+  <div class="dh"><div class="dh-n">Día 2 · Lunes, 30 de Marzo 2026</div><div class="dh-t">IBÓN DE ESTANÉS</div><div class="dh-s">Canfranc → Col du Somport → Sansanet (Francia)</div><div class="dh-chips"><span class="dh-chip">🥾 12,5 km · +580m</span><span class="dh-chip">🇫🇷 Francia</span><span class="dh-chip">✓ Comida reservada</span></div></div>
+  <a class="mb" href="https://www.meteoblue.com/es/france/nouvelle-aquitaine/urdos_france_3021218" target="_blank"><span class="mb-i">🌤</span><span class="mb-t">Previsión — Col du Somport / Urdos</span><span class="mb-a">↗</span></a>
+  <div class="ib warn"><div class="ibt">⚠ Antes de salir esta mañana</div><ul><li>Sin cobertura móvil — <strong>descarga Wikiloc esta noche.</strong></li><li>Llevar monedas para el parquímetro.</li><li>Perros prohibidos (Parque Nacional), incluso con correa.</li><li>1,5 L de agua/persona — sin fuentes en ruta.</li></ul></div>
+  <div class="lbl">Al parking de Sansanet</div>
+  <div class="tc">
+    <div class="tr"><span class="tf">Canfranc → Candanchú (N-330)</span><span class="tt">~10min</span><span class="tk">10km</span></div>
+    <div class="tr"><span class="tf">Candanchú → Col du Somport</span><span class="tt">~3min</span><span class="tk">2km</span></div>
+    <div class="tr"><span class="tf">Col → Parking (gira ▶ DERECHA)</span><span class="tt">~4min</span><span class="tk">3km</span></div>
+    <div class="tr"><span class="tf">TOTAL</span><span class="tt">~17min</span><span class="tk">15km</span></div>
+  </div>
+  <a class="ab maps" href="https://maps.google.com/maps?q=Parking+Sansanet+Col+du+Somport" target="_blank"><span class="ab-i">🗺</span><span class="ab-t">Parking Sansanet en Maps</span><span class="ab-a">↗</span></a>
+  <div class="lbl">Ruta · 12,5 km · +580m · 4-4,5h</div>
+  <div class="cb">Lago glaciar de 1.777 m en el Parque Nacional de los Pirineos franceses. Hayedo espectacular, agua azul turquesa. Posible <strong>hielo azul en bordes</strong> en marzo. Bajada con cascadas.</div>
+  <a class="ab wil" href="https://es.wikiloc.com/rutas-senderismo/ibon-de-estanes-circular-desde-sansanet" target="_blank"><span class="ab-i">🧭</span><span class="ab-t">Ruta circular en Wikiloc</span><span class="ab-a">↗</span></a>
+  <a class="ab wil" href="https://es.wikiloc.com/rutas-senderismo/ibon-de-estanes-ida-y-vuelta" target="_blank"><span class="ab-i">🧭</span><span class="ab-t">Ida y vuelta — opción sencilla (9,5 km)</span><span class="ab-a">↗</span></a>
+  <div class="lbl">Horario</div>
+  <div class="sc">
+    <div class="si br"><span class="st">7:30h</span><span class="si-i">🍳</span><span class="si-t">Desayuno en el hotel (buffet incluido). Salir puntuales.</span></div>
+    <div class="si"><span class="st">8:15h</span><span class="si-i">🚗</span><span class="si-t">Salida del hotel.</span></div>
+    <div class="si"><span class="st">8:35h</span><span class="si-i">🅿</span><span class="si-t">Parking Sansanet. Activar track Wikiloc.</span></div>
+    <div class="si"><span class="st">10:30h</span><span class="si-i">💧</span><span class="si-t">Ibón de Estanés (1.777 m). Parada larga.</span></div>
+    <div class="si wa"><span class="st">11:30h</span><span class="si-i">⚠</span><span class="si-t">Descenso Espélunguère — escalera metálica. Pronunciado y resbaladizo.</span></div>
+    <div class="si"><span class="st">12:15h</span><span class="si-i">📷</span><span class="si-t">Cascada de Espélunguère — foto obligatoria.</span></div>
+    <div class="si"><span class="st">13:30h</span><span class="si-i">🚗</span><span class="si-t">Vuelta al parking. Regreso a Canfranc.</span></div>
+    <div class="si hi"><span class="st">14:45h</span><span class="si-i">🍽</span><span class="si-t"><strong>COMIDA — La Internacional, Barceló. (YA RESERVADO)</strong></span></div>
+    <div class="si"><span class="st">16:30h</span><span class="si-i">♨</span><span class="si-t">Tarde libre: spa, paseo Canfranc pueblo o Ciudadela Jaca.</span></div>
+  </div>
+  <div class="lbl" style="margin-top:18px">Restaurante</div>
+  <div class="rc res"><div class="rct"><div class="rcs g">■ Comida 14:45h · Ya Reservado ✓</div><div class="rcn">La Internacional — Barceló Canfranc</div></div><div class="rcd">En el propio hotel. Trucha imperial del Pirineo, migas del pastor.</div><div class="rca"><a class="rab callg" href="tel:+34974561900">📞 Hotel</a></div></div>
+  <div class="pnrow"><button class="ab maps" data-go="pg-p1"><span class="ab-t">‹ Día 1</span></button><button class="ab maps" data-go="pg-p3"><span class="ab-t">Día 3 ›</span></button></div>
+</div>
+</div>
+
+<!-- ══════════════ PAGE: DÍA 3 ══════════════ -->
+<div class="pg" id="pg-p3">
+<div class="tb"><button class="tbb" data-go="pg-p2">‹</button><span class="tbt">Día 3 · Lescun · Pau · Portalet</span><button class="tbb" data-go="pg-ph">⌂</button></div>
+<div class="ct">
+  <div class="dh"><div class="dh-n">Día 3 · Martes, 31 de Marzo 2026</div><div class="dh-t">LESCUN · PAU · FORT DU PORTALET</div><div class="dh-s">Canfranc → Francia → Pau → Portalet → Canfranc · ~183 km</div><div class="dh-chips"><span class="dh-chip">🇫🇷 Día en Francia</span><span class="dh-chip">⭐ Cena 1928 ✓</span></div></div>
+  <div class="mbr"><a class="mb" href="https://www.meteoblue.com/es/france/nouvelle-aquitaine/lescun_france_2998459" target="_blank"><span class="mb-i">🌤</span><span class="mb-t">Lescun</span><span class="mb-a">↗</span></a><a class="mb" href="https://www.meteoblue.com/es/france/nouvelle-aquitaine/pau_france_2988507" target="_blank"><span class="mb-i">🌤</span><span class="mb-t">Pau</span><span class="mb-a">↗</span></a></div>
+  <div class="lbl">Conducción del día</div>
+  <div class="tc">
+    <div class="tr"><span class="tf">Canfranc → Urdos (Túnel Somport)</span><span class="tt">~20min</span><span class="tk">15km</span></div>
+    <div class="tr"><span class="tf">Urdos → Lescun (D439)</span><span class="tt">~25min</span><span class="tk">18km</span></div>
+    <div class="tr"><span class="tf">Lescun → Pau (N134/A64)</span><span class="tt">~1h10</span><span class="tk">75km</span></div>
+    <div class="tr"><span class="tf">Pau → Fort du Portalet (D934)</span><span class="tt">~1h10</span><span class="tk">65km</span></div>
+    <div class="tr"><span class="tf">Fort → Canfranc (Somport)</span><span class="tt">~15min</span><span class="tk">10km</span></div>
+    <div class="tr"><span class="tf">TOTAL conducción</span><span class="tt">~4h00</span><span class="tk">183km</span></div>
+  </div>
+  <a class="ab maps" href="https://maps.google.com/maps?saddr=Canfranc+Estacion&daddr=Lescun,France+to:Pau,France+to:Fort+du+Portalet,France+to:Canfranc+Estacion" target="_blank"><span class="ab-i">🗺</span><span class="ab-t">Ruta completa del día en Maps</span><span class="ab-a">↗</span></a>
+  <a class="ab maps" href="https://maps.google.com/maps?q=Parking+Place+de+Verdun+Pau" target="_blank"><span class="ab-i">🅿</span><span class="ab-t">Parking Place de Verdun, Pau</span><span class="ab-a">↗</span></a>
+  <div class="lbl">Lugares</div>
+  <div class="cb"><strong>Circo de Lescun</strong> — Las 'Dolomitas del Pirineo'. Agujas calcáreas, Pic d'Anie (2.507 m), Mesa de los Tres Reyes. El pueblo da vistas soberbia desde su terraza natural.</div>
+  <div class="cb"><strong>Pau</strong> — Ciudad natal de Enrique IV (1553). Château de Pau (entrada ~€7). Funicular gratuito de 1908 sube al Boulevard des Pyrénées.</div>
+  <div class="cb"><strong>Fort du Portalet</strong> — Fortaleza s. XIX sobre acantilado. Prisión de Léon Blum y el mariscal Pétain. Visita exterior gratuita.</div>
+  <a class="ab wil" href="https://es.wikiloc.com/rutas-senderismo/chemin-de-la-mature" target="_blank"><span class="ab-i">🧭</span><span class="ab-t">Chemin de la Mâture en Wikiloc (45 min)</span><span class="ab-a">↗</span></a>
+  <div class="lbl">Horario</div>
+  <div class="sc">
+    <div class="si br"><span class="st">7:30-9h</span><span class="si-i">🍳</span><span class="si-t">Desayuno en el hotel (buffet incluido). Sin prisas.</span></div>
+    <div class="si"><span class="st">9:30h</span><span class="si-i">🚗</span><span class="si-t">Salida. Túnel de Somport hacia Francia.</span></div>
+    <div class="si"><span class="st">10:00h</span><span class="si-i">🏔</span><span class="si-t">Lescun — parking del pueblo. Paseo libre, vistas al circo.</span></div>
+    <div class="si"><span class="st">12:45h</span><span class="si-i">🅿</span><span class="si-t">Pau. Parking Verdun → funicular gratuito → Boulevard.</span></div>
+    <div class="si"><span class="st">13:00h</span><span class="si-i">🏰</span><span class="si-t">Château de Pau (~1h). Entrada ~€7.</span></div>
+    <div class="si hi"><span class="st">14:30h</span><span class="si-i">🍽</span><span class="si-t"><strong>COMIDA — Le Majestic, Pau. RESERVAR.</strong></span></div>
+    <div class="si"><span class="st">17:45h</span><span class="si-i">🏯</span><span class="si-t">Fort du Portalet — visita exterior ~35 min.</span></div>
+    <div class="si wa"><span class="st">~18:45h</span><span class="si-i">🛒</span><span class="si-t">Al llegar: comprar bocadillos Ordesa en Aliprox (cierra 20h).</span></div>
+    <div class="si hi"><span class="st">21:15h</span><span class="si-i">⭐</span><span class="si-t"><strong>CENA — Restaurante 1928, Barceló. (YA RESERVADO)</strong></span></div>
+  </div>
+  <div class="lbl" style="margin-top:18px">Restaurantes</div>
+  <div class="rc pend"><div class="rct"><div class="rcs o">■ Comida ~14:30h · Pendiente reservar</div><div class="rcn">Le Majestic — Pau (Francia)</div></div><div class="rcd">Boulevard des Pyrénées, Pau. Bistró bearnés: garbure, confit, foie. ~€25-35.</div><div class="rca"><a class="rab webr" href="https://www.thefork.es/buscar?q=le+majestic+pau" target="_blank">🍴 TheFork ↗</a></div></div>
+  <div class="rc res"><div class="rct"><div class="rcs g">■ Cena 21:15h · Ya Reservado ✓</div><div class="rcn">Restaurante 1928 — Barceló Canfranc</div></div><div class="rcd">Menú degustación franco-aragonés. La gran cena de la semana.</div></div>
+  <div class="pnrow"><button class="ab maps" data-go="pg-p2"><span class="ab-t">‹ Día 2</span></button><button class="ab maps" data-go="pg-p4"><span class="ab-t">Día 4 ›</span></button></div>
+</div>
+</div>
+
+<!-- ══════════════ PAGE: DÍA 4 ══════════════ -->
+<div class="pg" id="pg-p4">
+<div class="tb"><button class="tbb" data-go="pg-p3">‹</button><span class="tbt">Día 4 · Cola de Caballo</span><button class="tbb" data-go="pg-ph">⌂</button></div>
+<div class="ct">
+  <div class="dh"><div class="dh-n">Día 4 · Miércoles, 1 de Abril 2026</div><div class="dh-t">COLA DE CABALLO — ORDESA</div><div class="dh-s">Canfranc → Torla → Pradera de Ordesa · ~82 km</div><div class="dh-chips"><span class="dh-chip">🚌 Bus lanzadera</span><span class="dh-chip">🥾 17-18 km · 7-8h</span><span class="dh-chip">🥪 Bocadillos</span></div></div>
+  <a class="mb" href="https://www.meteoblue.com/es/espana/aragon/torla_espana_3108285" target="_blank"><span class="mb-i">🌤</span><span class="mb-t">Previsión — Torla-Ordesa</span><span class="mb-a">↗</span></a>
+  <div class="ib warn"><div class="ibt">⚠ Acceso obligatorio Semana Santa</div><ul><li>Aparcar en Torla · bus OrdesaBus (~€6 ida/vuelta).</li><li>Billetes <strong>solo presenciales</strong> — sin venta online.</li><li>Taquillas abren 5:45h · buses desde 6:00h.</li></ul></div>
+  <a class="ab web" href="https://www.ordesabus.com" target="_blank"><span class="ab-i">🚌</span><span class="ab-t">Horarios actualizados — ordesabus.com</span><span class="ab-a">↗</span></a>
+  <div class="lbl">Conducción Canfranc → Torla</div>
+  <div class="tc">
+    <div class="tr"><span class="tf">Canfranc → Biescas (A-136/A-23)</span><span class="tt">~45min</span><span class="tk">47km</span></div>
+    <div class="tr"><span class="tf">Biescas → Broto (A-135)</span><span class="tt">~30min</span><span class="tk">28km</span></div>
+    <div class="tr"><span class="tf">Broto → Torla (A-135)</span><span class="tt">~10min</span><span class="tk">7km</span></div>
+    <div class="tr"><span class="tf">Torla → Pradera (bus)</span><span class="tt">~15min</span><span class="tk">8km</span></div>
+    <div class="tr"><span class="tf">TOTAL Canfranc → Torla</span><span class="tt">~1h25</span><span class="tk">82km</span></div>
+  </div>
+  <a class="ab maps" href="https://maps.google.com/maps?saddr=Canfranc+Estacion&daddr=Torla-Ordesa" target="_blank"><span class="ab-i">🗺</span><span class="ab-t">Canfranc → Torla en Maps</span><span class="ab-a">↗</span></a>
+  <div class="lbl">Opciones de ruta</div>
+  <div class="ib info"><div class="ibt">Opción A — Fondo del Valle (Recomendada)</div>~17,5 km · +550 m · 5,5-6h. GR-11 por el cañón hasta Cola de Caballo.</div>
+  <div class="ib info"><div class="ibt">Opción B — Senda Cazadores + Faja de Pelay</div>~18 km · +1.100 m · 7-8h. Vistas aéreas desde 1.850 m. La foto de portada del viaje.</div>
+  <a class="ab wil" href="https://es.wikiloc.com/rutas-senderismo/ordesa-cola-de-caballo" target="_blank"><span class="ab-i">🧭</span><span class="ab-t">Cola de Caballo en Wikiloc</span><span class="ab-a">↗</span></a>
+  <div class="lbl">Horario</div>
+  <div class="sc">
+    <div class="si br"><span class="st">7:30h</span><span class="si-i">🍳</span><span class="si-t">Desayuno en el hotel (buffet abre 7:30h). Rápido y contundente.</span></div>
+    <div class="si"><span class="st">7:45h</span><span class="si-i">🚗</span><span class="si-t">Salida de Canfranc.</span></div>
+    <div class="si"><span class="st">9:10h</span><span class="si-i">🅿</span><span class="si-t">Torla. Parking gratuito. Comprar billete (~€6).</span></div>
+    <div class="si"><span class="st">9:20h</span><span class="si-i">🚌</span><span class="si-t">Bus lanzadera a la Pradera (~15 min).</span></div>
+    <div class="si"><span class="st">9:35h</span><span class="si-i">🥾</span><span class="si-t">Inicio ruta desde la Pradera (1.300 m). Señales GR-11.</span></div>
+    <div class="si"><span class="st">11:30h</span><span class="si-i">📷</span><span class="si-t">Faja de Pelay (1.850 m) — FOTO de portada del viaje.</span></div>
+    <div class="si"><span class="st">12:30h</span><span class="si-i">💧</span><span class="si-t">Cola de Caballo (1.900 m) — cascada de ~70 m en pleno deshielo.</span></div>
+    <div class="si hi"><span class="st">13:15h</span><span class="si-i">🥪</span><span class="si-t"><strong>Bocadillos en el Circo de Soaso.</strong> El mejor comedor del viaje.</span></div>
+    <div class="si"><span class="st">14:00h</span><span class="si-i">⬇</span><span class="si-t">Inicio descenso por el cañón (~2,5h).</span></div>
+    <div class="si"><span class="st">16:30h</span><span class="si-i">🚌</span><span class="si-t">Bus a Torla. Regreso a Canfranc (~1h25).</span></div>
+    <div class="si"><span class="st">20:30h</span><span class="si-i">🍷</span><span class="si-t">Cena tranquila en el hotel.</span></div>
+  </div>
+  <div class="lbl" style="margin-top:18px">Cena</div>
+  <div class="rc neu"><div class="rct"><div class="rcs b">■ Cena ~20:30h</div><div class="rcn">El Internacional — Barceló Canfranc</div></div><div class="rcd">La opción más cómoda. Horario 20:00-22:00h. Reservar en recepción.</div><div class="rca"><a class="rab call" href="tel:+34974561900">📞 Hotel</a></div></div>
+  <div class="pnrow"><button class="ab maps" data-go="pg-p3"><span class="ab-t">‹ Día 3</span></button><button class="ab maps" data-go="pg-p5"><span class="ab-t">Día 5 ›</span></button></div>
+</div>
+</div>
+
+<!-- ══════════════ PAGE: DÍA 5 ══════════════ -->
+<div class="pg" id="pg-p5">
+<div class="tb"><button class="tbb" data-go="pg-p4">‹</button><span class="tbt">Día 5 · Selva de Oza · Ansó</span><button class="tbb" data-go="pg-ph">⌂</button></div>
+<div class="ct">
+  <div class="dh"><div class="dh-n">Día 5 · Jueves, 2 de Abril 2026</div><div class="dh-t">SELVA DE OZA · ANSÓ · SIRESA</div><div class="dh-s">Canfranc → Valle de Hecho → Ansó → Siresa → Canfranc · ~150 km</div><div class="dh-chips"><span class="dh-chip">🥾 5 km llano</span><span class="dh-chip">⭐ Michelin Bib</span><span class="dh-chip">✓ Canteré reservado</span></div></div>
+  <a class="mb" href="https://www.meteoblue.com/es/espana/aragon/hecho_espana_3119716" target="_blank"><span class="mb-i">🌤</span><span class="mb-t">Previsión — Valle de Hecho</span><span class="mb-a">↗</span></a>
+  <div class="lbl">Conducción del día</div>
+  <div class="tc">
+    <div class="tr"><span class="tf">Canfranc → Puente la Reina (N-240)</span><span class="tt">~30min</span><span class="tk">22km</span></div>
+    <div class="tr"><span class="tf">Puente la Reina → Hecho (A-176)</span><span class="tt">~20min</span><span class="tk">18km</span></div>
+    <div class="tr"><span class="tf">Hecho → Selva de Oza (asfaltada)</span><span class="tt">~20min</span><span class="tk">12km</span></div>
+    <div class="tr"><span class="tf">Oza → Ansó → Siresa → Canfranc</span><span class="tt">~1h50</span><span class="tk">98km</span></div>
+    <div class="tr"><span class="tf">TOTAL conducción</span><span class="tt">~3h00</span><span class="tk">150km</span></div>
+  </div>
+  <a class="ab maps" href="https://maps.google.com/maps?saddr=Canfranc+Estacion&daddr=Selva+de+Oza,Huesca+to:Anso,Huesca+to:Siresa,Huesca+to:Canfranc+Estacion" target="_blank"><span class="ab-i">🗺</span><span class="ab-t">Ruta completa del día en Maps</span><span class="ab-a">↗</span></a>
+  <div class="lbl">Lugares</div>
+  <div class="cb"><strong>Selva de Oza</strong> — Hayedo y abetar en el Parque Natural Valles Occidentales. Terreno llano junto al río. Ideal para trípode.</div>
+  <div class="cb"><strong>Ansó — Conjunto Histórico-Artístico.</strong> Callizos, iglesia gótica de San Pedro (s. XVI). Aparcar en la entrada: casco peatonal.</div>
+  <div class="cb"><strong>Monasterio de Siresa (s. IX)</strong> — Románico aragonés. De paso en el regreso — 20 minutos.</div>
+  <div class="lbl">Horario</div>
+  <div class="sc">
+    <div class="si br"><span class="st">7:30-8h</span><span class="si-i">🍳</span><span class="si-t">Desayuno en el hotel (buffet incluido). Sin prisas.</span></div>
+    <div class="si"><span class="st">8:30h</span><span class="si-i">🚗</span><span class="si-t">Salida del hotel.</span></div>
+    <div class="si"><span class="st">9:30h</span><span class="si-i">🥾</span><span class="si-t">Paseo circular Selva de Oza (~5 km, llano).</span></div>
+    <div class="si"><span class="st">11:45h</span><span class="si-i">🏘</span><span class="si-t">Regreso a Hecho pueblo. Paseo por el casco medieval.</span></div>
+    <div class="si hi"><span class="st">14:30h</span><span class="si-i">⭐</span><span class="si-t"><strong>COMIDA — Canteré, Hecho. Michelin Bib. (YA RESERVADO ✓)</strong></span></div>
+    <div class="si"><span class="st">16:00h</span><span class="si-i">🚗</span><span class="si-t">Desplazamiento a Ansó (~35 min).</span></div>
+    <div class="si"><span class="st">16:45h</span><span class="si-i">🏛</span><span class="si-t">Visita casco histórico de Ansó.</span></div>
+    <div class="si"><span class="st">17:45h</span><span class="si-i">📷</span><span class="si-t">Mirador entrada de Ansó — foto clásica del pueblo.</span></div>
+    <div class="si"><span class="st">18:15h</span><span class="si-i">⛪</span><span class="si-t">Regreso por Siresa. Parada Monasterio (~20 min).</span></div>
+    <div class="si"><span class="st">20:30h</span><span class="si-i">🍷</span><span class="si-t">Cena — última noche completa.</span></div>
+  </div>
+  <div class="lbl" style="margin-top:18px">Restaurantes</div>
+  <div class="rc res"><div class="rct"><div class="rcs g">■ Comida 14:30h · Ya Reservado ✓</div><div class="rcn">Canteré — Hecho</div></div><div class="rcd"><strong>Bib Gourmand Michelin 2025.</strong> C/ Aire 1, Hecho. Menú degustación ~€30 (7 pases).</div><div class="rca"><a class="rab callg" href="tel:+34974375214">📞 +34 974 37 52 14</a><a class="rab webr" href="https://www.restaurantecantere.com" target="_blank">Web ↗</a></div></div>
+  <div class="rc pend"><div class="rct"><div class="rcs o">■ Cena ~20:30h · Pendiente reservar</div><div class="rcn">Restaurante Gastón — Jaca</div></div><div class="rcd">C/ Lanuza 3, Jaca. Ternasco a la brasa, bacalao. 25 min del hotel.</div><div class="rca"><a class="rab call" href="tel:+34974362050">📞 +34 974 36 20 50</a></div></div>
+  <div class="pnrow"><button class="ab maps" data-go="pg-p4"><span class="ab-t">‹ Día 4</span></button><button class="ab maps" data-go="pg-p6"><span class="ab-t">Día 6 ›</span></button></div>
+</div>
+</div>
+
+<!-- ══════════════ PAGE: DÍA 6 ══════════════ -->
+<div class="pg" id="pg-p6">
+<div class="tb"><button class="tbb" data-go="pg-p5">‹</button><span class="tbt">Día 6 · Regreso a Madrid</span><button class="tbb" data-go="pg-ph">⌂</button></div>
+<div class="ct">
+  <div class="dh" style="background:linear-gradient(135deg,#2d5a27 0%,#4a8c42 100%)"><div class="dh-n">Día 6 · Viernes, 3 de Abril 2026</div><div class="dh-t">REGRESO A MADRID</div><div class="dh-s">Canfranc → Jaca → Zaragoza (opc.) → Madrid · ~453 km</div><div class="dh-chips"><span class="dh-chip">🚗 453 km</span><span class="dh-chip">🍳 Desayuno en hotel</span><span class="dh-chip">🏠 ¡Hasta la próxima!</span></div></div>
+  <div class="mbr"><a class="mb" href="https://www.meteoblue.com/es/espana/aragon/jaca_espana_3117732" target="_blank"><span class="mb-i">🌤</span><span class="mb-t">Jaca</span><span class="mb-a">↗</span></a><a class="mb" href="https://www.meteoblue.com/es/espana/aragon/zaragoza_espana_6361046" target="_blank"><span class="mb-i">🌤</span><span class="mb-t">Zaragoza</span><span class="mb-a">↗</span></a></div>
+  <div class="ib ok"><div class="ibt">🍳 Desayuno incluido en el hotel</div>El desayuno buffet está incluido. Aprovechad este último desayuno en Canfranc con calma antes del check-out.</div>
+  <div class="lbl">Ruta de vuelta</div>
+  <div class="tc">
+    <div class="tr"><span class="tf">Canfranc → Jaca (N-330a)</span><span class="tt">~25min</span><span class="tk">28km</span></div>
+    <div class="tr"><span class="tf">Jaca → Huesca (A-23)</span><span class="tt">~40min</span><span class="tk">55km</span></div>
+    <div class="tr"><span class="tf">Huesca → Zaragoza</span><span class="tt">~50min</span><span class="tk">70km</span></div>
+    <div class="tr"><span class="tf">Zaragoza → Madrid (AP-2/A-2)</span><span class="tt">~2h10</span><span class="tk">300km</span></div>
+    <div class="tr"><span class="tf">TOTAL</span><span class="tt">~4h05</span><span class="tk">453km</span></div>
+  </div>
+  <a class="ab maps" href="https://maps.google.com/maps?saddr=Canfranc+Estacion&daddr=Madrid" target="_blank"><span class="ab-i">🗺</span><span class="ab-t">Ruta de vuelta en Google Maps</span><span class="ab-a">↗</span></a>
+  <div class="ib warn"><div class="ibt">⚠ Tips del regreso</div><ul><li>Radar fijo A-23 Jaca–Huesca.</li><li>Llegar a Madrid <strong>antes de las 16h</strong> para evitar tráfico.</li></ul></div>
+  <div class="lbl">Horario</div>
+  <div class="sc">
+    <div class="si br"><span class="st">7:30-9h</span><span class="si-i">🍳</span><span class="si-t">Desayuno en el hotel (buffet incluido). Último desayuno en Canfranc.</span></div>
+    <div class="si"><span class="st">9:00h</span><span class="si-i">🏨</span><span class="si-t">Check-out del hotel. Cargar el coche.</span></div>
+    <div class="si"><span class="st">9:30h</span><span class="si-i">🚗</span><span class="si-t">Salida hacia Jaca y Madrid.</span></div>
+    <div class="si hi"><span class="st">~14:00h</span><span class="si-i">🍽</span><span class="si-t"><strong>Comida en Zaragoza</strong> (si paráis, ver opciones).</span></div>
+    <div class="si"><span class="st">~16:00h</span><span class="si-i">🏠</span><span class="si-t">Llegada a Madrid. ¡Buen regreso!</span></div>
+  </div>
+  <div class="lbl" style="margin-top:18px">Parada opcional Zaragoza</div>
+  <div class="rc neu"><div class="rct"><div class="rcs b">■ Comida ~14:00h</div><div class="rcn">El Cachirulo — Zaragoza</div></div><div class="rcd">Ctra. de Logroño km 1,5. Referente de la cocina aragonesa.</div><div class="rca"><a class="rab call" href="tel:+34976461025">📞 +34 976 46 10 25</a></div></div>
+  <div class="rc neu"><div class="rct"><div class="rcs b">■ Alternativa histórica</div><div class="rcn">Casa Lac — Zaragoza (desde 1825)</div></div><div class="rcd">Pl. de las Yeseras 4. El restaurante más antiguo del mundo en activo.</div><div class="rca"><a class="rab call" href="tel:+34976399620">📞 +34 976 39 96 20</a></div></div>
+  <div class="pnrow"><button class="ab maps" data-go="pg-p5"><span class="ab-t">‹ Día 5</span></button><button class="ab maps" data-go="pg-ph" style="background:var(--grl);border-color:#86efac;color:#166534"><span class="ab-t">🏠 Inicio</span></button></div>
+</div>
+</div>
+
+<!-- ══════════════ PAGE: CHECKLIST ══════════════ -->
+<div class="pg" id="pg-pc">
+<div class="tb"><button class="tbb" data-go="pg-ph">‹</button><span class="tbt">Checklist Equipamiento</span><button class="tbb" data-go="pg-ph">⌂</button></div>
+<div class="ct">
+  <div class="chs"><h4>🥾 Calzado</h4><ul><li>✓ Botas impermeables Gore-Tex</li><li>✓ Zapatillas ciudad (Ansó, Pau, Jaca)</li><li>✓ Calcetines merino (mín. 3 pares)</li></ul></div>
+  <div class="chs"><h4>🧥 Ropa en Capas</h4><ul><li>✓ Camiseta técnica manga larga</li><li>✓ Forro polar o midlayer</li><li>✓ Cortavientos/impermeable — <strong>obligatorio</strong></li><li>✓ Pantalón de trekking</li><li>✓ Ropa ciudad para cenas (1-2 conjuntos)</li></ul></div>
+  <div class="chs"><h4>⛰ Material de Montaña</h4><ul><li>✓ Bastones de trekking plegables</li><li>✓ Microspikes / Yaktrax (posible nieve Estanés)</li><li>✓ Guantes y gorro fino (mañanas 0-2°C)</li><li>✓ Gafas de sol categoría 3-4</li><li>✓ 2 litros agua/persona por día de ruta</li></ul></div>
+  <div class="chs"><h4>🎒 Mochila y Avituallamiento</h4><ul><li>✓ Mochila 20-25 L</li><li>✓ Botiquín: tiritas, ibuprofeno, SPF 50+</li><li>✓ Linterna frontal, navaja multiusos, silbato</li></ul></div>
+  <div class="chs"><h4>📷 Fotografía — Canon R7</h4><ul><li>✓ RF 18-150mm + RF 100-400mm</li><li>✓ Trípode ligero (imprescindible Ordesa)</li><li>✓ Filtro CPL (ibón de Estanés y Selva de Oza)</li><li>✓ Baterías extra mín. 2 (frío = -50% autonomía)</li><li>✓ Tarjetas SD + disco duro backup</li></ul></div>
+  <div class="chs"><h4>📱 Tecnología</h4><ul><li>✓ Wikiloc Premium — tracks offline <strong>antes de Madrid</strong></li><li>✓ Maps.me — offline Huesca + Pirineos Atlánticos</li><li>✓ App Meteoblue</li><li>✓ Powerbank para el móvil</li></ul></div>
+  <div class="chs"><h4>📄 Documentos y Dinero</h4><ul><li>✓ DNI / Pasaporte (Francia días 2 y 3)</li><li>✓ Efectivo euros (parquímetros Francia)</li><li>✓ Tarjeta crédito (PIN preferido en Francia)</li></ul></div>
+  <button class="ab maps" data-go="pg-ph"><span class="ab-i">⌂</span><span class="ab-t">Volver al inicio</span></button>
+</div>
+</div>
+
+<!-- ══════════════ PAGE: FOTOS ══════════════ -->
+<div class="pg" id="pg-pf">
+<div class="tb"><button class="tbb" data-go="pg-ph">‹</button><span class="tbt">Resumen Fotográfico</span><button class="tbb" data-go="pg-ph">⌂</button></div>
+<div class="ct">
+  <div class="ib info"><div class="ibt">💡 Recordatorio</div><strong>Trípode:</strong> Imprescindible en cascadas. Muy recomendado en Oza.<br><strong>Baterías:</strong> Cargar cada noche — frío reduce autonomía al 40-50%.<br><strong>Filtro CPL:</strong> Ibón de Estanés y Selva de Oza.</div>
+  <div class="pr"><div class="pro">RF 18-150mm (18-35mm)</div><div class="prs">Estación Canfranc, Cola de Caballo, Selva de Oza, Mirador Ansó, Boulevard Pyrénées</div><div class="pra">f/8-f/11 · ISO 100-400 · 1/200s paisaje · 1/4s-1s cascadas (trípode)</div></div>
+  <div class="pr"><div class="pro">RF 18-150mm (50-150mm)</div><div class="prs">Circo Lescun, Château Pau, callizos Ansó, Fort du Portalet</div><div class="pra">f/4-f/5.6 · ISO 400-1600 · Modo AV</div></div>
+  <div class="pr"><div class="pro">RF 100-400mm (300-400mm)</div><div class="prs">Fauna: sarrios, buitres leonados, patos ibón</div><div class="pra">TV vel. &gt;1/1000s · ISO Auto hasta 6400 · IS modo 2</div></div>
+  <div class="pr"><div class="pro">RF 100-400mm (100-200mm)</div><div class="prs">Picos nevados desde Lescun, Faja de Pelay, Fort du Portalet</div><div class="pra">f/6.3-f/8 · ISO 200-800 · Hora dorada preferible</div></div>
+  <button class="ab maps" data-go="pg-ph"><span class="ab-i">⌂</span><span class="ab-t">Volver al inicio</span></button>
+</div>
+</div>
+
+<script>
+// ── Minimal router: show/hide full page divs ──────────────
+var cur = 'pg-ph';
+
+function goPage(id) {
+  var from = document.getElementById(cur);
+  var to   = document.getElementById(id);
+  if (!to) return;
+  if (from) from.classList.remove('on');
+  to.classList.add('on');
+  cur = id;
+  window.scrollTo(0, 0);
+}
+
+// ── Tap detection ─────────────────────────────────────────
+var sx = 0, sy = 0, moved = false;
+
+document.addEventListener('touchstart', function(e) {
+  sx = e.touches[0].clientX;
+  sy = e.touches[0].clientY;
+  moved = false;
+}, {passive: true});
+
+document.addEventListener('touchmove', function() {
+  moved = true;
+}, {passive: true});
+
+document.addEventListener('touchend', function(e) {
+  if (moved) {
+    var dx = Math.abs(e.changedTouches[0].clientX - sx);
+    var dy = Math.abs(e.changedTouches[0].clientY - sy);
+    if (dx > 10 || dy > 10) return;
+  }
+  tap(e.target, e);
+}, {passive: false});
+
+// Desktop
+document.addEventListener('click', function(e) {
+  tap(e.target, e);
+});
+
+function tap(el, e) {
+  for (var i = 0; i < 6; i++) {
+    if (!el || el === document.body) return;
+    if (el.dataset) {
+      if (el.dataset.go) {
+        e.preventDefault();
+        goPage(el.dataset.go);
+        return;
+      }
+      if (el.dataset.toggle) {
+        var body = el.nextElementSibling;
+        var arr  = el.querySelector('.arr');
+        if (body) body.classList.toggle('open');
+        if (arr)  arr.classList.toggle('open');
+        return;
+      }
+    }
+    el = el.parentElement;
+  }
+}
+</script>
+</body>
+</html>
