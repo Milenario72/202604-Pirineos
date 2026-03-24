@@ -164,6 +164,18 @@ a.rb.w{background:var(--bll);color:var(--bl);border:1px solid #93c5fd}
 .pnrow{display:flex;gap:10px;margin-top:24px}
 .pnrow .ab{flex:1;justify-content:center}
 
+/* INFO LINKS */
+.info-links{background:var(--wh);border-radius:var(--rs);border:1px solid var(--bd);overflow:hidden;margin-bottom:12px}
+.info-links-h{background:#f8fafc;padding:11px 16px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--slm);border-bottom:1px solid var(--bd)}
+.il{display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid #f3f4f6;font-size:15px;color:var(--sl);text-decoration:none}
+.il:last-child{border-bottom:none}
+.il:active{background:var(--blx)}
+.il-ico{font-size:20px;flex-shrink:0}
+.il-body{flex:1}
+.il-t{font-weight:600;color:var(--sl)}
+.il-s{font-size:13px;color:var(--sll);margin-top:1px}
+.il-arr{color:var(--sll);font-size:18px;flex-shrink:0}
+
 /* BOTTOM NAV */
 .bnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:rgba(26,61,92,.97);display:flex;justify-content:space-around;align-items:center;padding:9px 4px calc(9px + env(safe-area-inset-bottom,0px));z-index:200;box-shadow:0 -2px 12px rgba(0,0,0,.25)}
 .nb{display:flex;flex-direction:column;align-items:center;gap:3px;color:rgba(255,255,255,.7);font-size:10px;font-weight:600;padding:5px 6px;border-radius:10px;min-width:36px;width:auto}
@@ -277,7 +289,11 @@ a.rb.w{background:var(--bll);color:var(--bl);border:1px solid #93c5fd}
     <div class="tr"><span class="tf">TOTAL</span><span class="tt">~4h05</span><span class="tk">453km</span></div>
   </div>
   <a class="ab maps" href="https://maps.google.com/?saddr=Madrid&daddr=Jaca+to:Canfranc+Estacion&travelmode=driving" target="_blank"><span class="ab-i">🗺</span><span class="ab-t">Ruta completa en Google Maps</span><span class="ab-a">↗</span></a>
+  <a class="ab maps" href="https://maps.google.com/maps?q=Gasolineras+cercanas+a+Zaragoza+A2" target="_blank"><span class="ab-i">⛽</span><span class="ab-t">Gasolineras en ruta — zona Zaragoza/Huesca</span><span class="ab-a">↗</span></a>
   <div class="ib warn"><div class="ibt">⚠ Conducción</div><ul><li>Salida recomendada <strong>8:30-9:00h</strong> — denso a partir de las 9:30h.</li><li>Gasolinera en Zaragoza o Huesca, no en Jaca para no llegar tarde.</li><li>Radar fijo A-23 entre Jaca y Huesca (Caldearenas).</li></ul></div>
+  <div class="lbl">Más información — Canfranc</div>
+  <a class="ab web" href="https://www.canfranc.es/turismo/" target="_blank"><span class="ab-i">🏛</span><span class="ab-t">Turismo Oficial Canfranc</span><span class="ab-a">↗</span></a>
+  <a class="ab web" href="https://www.estaciondecanfranc.es" target="_blank"><span class="ab-i">🚂</span><span class="ab-t">Historia de la Estación de Canfranc</span><span class="ab-a">↗</span></a>
   <div class="lbl">Horario</div>
   <div class="sc">
     <div class="si br"><span class="st">Antes</span><span class="si-i">🍳</span><span class="si-t">Desayuno en casa antes de partir.</span></div>
@@ -315,8 +331,8 @@ a.rb.w{background:var(--bll);color:var(--bl);border:1px solid #93c5fd}
   <a class="ab maps" href="https://maps.google.com/maps?q=Parking+Sansanet+Col+du+Somport" target="_blank"><span class="ab-i">🗺</span><span class="ab-t">Parking Sansanet en Maps</span><span class="ab-a">↗</span></a>
   <div class="lbl">Ruta · 12,5 km · +580m · 4-4,5h</div>
   <div class="cb">Lago glaciar de 1.777 m en el Parque Nacional de los Pirineos franceses. Hayedo espectacular, agua azul turquesa. Posible <strong>hielo azul en bordes</strong> en marzo. Bajada con cascadas.</div>
-  <a class="ab wil" href="https://es.wikiloc.com/rutas-senderismo/ibon-de-estanes-circular-desde-sansanet" target="_blank"><span class="ab-i">🧭</span><span class="ab-t">Ruta circular en Wikiloc</span><span class="ab-a">↗</span></a>
-  <a class="ab wil" href="https://es.wikiloc.com/rutas-senderismo/ibon-de-estanes-ida-y-vuelta" target="_blank"><span class="ab-i">🧭</span><span class="ab-t">Ida y vuelta — opción sencilla (9,5 km)</span><span class="ab-a">↗</span></a>
+  <a class="ab wil" href="https://es.wikiloc.com/rutas-senderismo/parking-sansanet-ibon-de-estanes-cascada-de-espelunguere-circular-25907631" target="_blank"><span class="ab-i">🧭</span><span class="ab-t">Circular Sansanet → Ibón → Espélunguère</span><span class="ab-a">↗</span></a>
+  <a class="ab wil" href="https://es.wikiloc.com/rutas-senderismo/circular-sansanet-ibon-de-estanes-54465343" target="_blank"><span class="ab-i">🧭</span><span class="ab-t">Circular Sansanet — opción sencilla</span><span class="ab-a">↗</span></a>
   <div class="lbl">Horario</div>
   <div class="sc">
     <div class="si br"><span class="st">7:30h</span><span class="si-i">🍳</span><span class="si-t">Desayuno en el hotel (buffet incluido). Salir puntuales.</span></div>
@@ -356,10 +372,14 @@ a.rb.w{background:var(--bll);color:var(--bl);border:1px solid #93c5fd}
   </div>
   <a class="ab maps" href="https://maps.google.com/maps?saddr=Canfranc+Estacion&daddr=Lescun,France+to:Pau,France+to:Fort+du+Portalet,France+to:Canfranc+Estacion" target="_blank"><span class="ab-i">🗺</span><span class="ab-t">Ruta completa del día en Maps</span><span class="ab-a">↗</span></a>
   <a class="ab maps" href="https://maps.google.com/maps?q=Parking+Place+de+Verdun+Pau" target="_blank"><span class="ab-i">🅿</span><span class="ab-t">Parking Place de Verdun, Pau</span><span class="ab-a">↗</span></a>
-  <div class="lbl">Lugares</div>
+  <div class="lbl">Lugares · Más información</div>
   <div class="cb"><strong>Circo de Lescun</strong> — Las 'Dolomitas del Pirineo'. Agujas calcáreas, Pic d'Anie (2.507 m), Mesa de los Tres Reyes. El pueblo da vistas soberbia desde su terraza natural.</div>
+  <a class="ab web" href="https://www.pyrenees-bearn-tourisme.fr/es/ver/naturaleza/cirque-de-lescun.html" target="_blank"><span class="ab-i">🏔</span><span class="ab-t">Circo de Lescun — Turismo oficial</span><span class="ab-a">↗</span></a>
   <div class="cb"><strong>Pau</strong> — Ciudad natal de Enrique IV (1553). Château de Pau (entrada ~€7). Funicular gratuito de 1908 sube al Boulevard des Pyrénées.</div>
+  <a class="ab web" href="https://chateau-pau.fr" target="_blank"><span class="ab-i">🏰</span><span class="ab-t">Château de Pau — web oficial (entrada ~€7)</span><span class="ab-a">↗</span></a>
+  <a class="ab web" href="https://es.tourismepau.com" target="_blank"><span class="ab-i">🌆</span><span class="ab-t">Pau Pyrénées Tourisme — qué ver</span><span class="ab-a">↗</span></a>
   <div class="cb"><strong>Fort du Portalet</strong> — Fortaleza s. XIX sobre acantilado. Prisión de Léon Blum y el mariscal Pétain. Visita exterior gratuita.</div>
+  <a class="ab web" href="https://www.fortduportalet.fr" target="_blank"><span class="ab-i">🏯</span><span class="ab-t">Fort du Portalet — web oficial</span><span class="ab-a">↗</span></a>
   <a class="ab wil" href="https://es.wikiloc.com/rutas-senderismo/chemin-de-la-mature" target="_blank"><span class="ab-i">🧭</span><span class="ab-t">Chemin de la Mâture en Wikiloc (45 min)</span><span class="ab-a">↗</span></a>
   <div class="lbl">Horario</div>
   <div class="sc">
@@ -388,6 +408,7 @@ a.rb.w{background:var(--bll);color:var(--bl);border:1px solid #93c5fd}
   <a class="mb" href="https://www.meteoblue.com/es/tiempo/semana/torla_espana_3107923" target="_blank"><span class="mb-i">🌤</span><span class="mb-t">Previsión — Torla-Ordesa</span><span class="mb-a">↗</span></a>
   <div class="ib warn"><div class="ibt">⚠ Acceso obligatorio Semana Santa</div><ul><li>Aparcar en Torla · bus OrdesaBus (~€6 ida/vuelta).</li><li>Billetes <strong>solo presenciales</strong> — sin venta online.</li><li>Taquillas abren 5:45h · buses desde 6:00h.</li></ul></div>
   <a class="ab web" href="https://www.ordesabus.com" target="_blank"><span class="ab-i">🚌</span><span class="ab-t">Horarios actualizados — ordesabus.com</span><span class="ab-a">↗</span></a>
+  <a class="ab web" href="https://www.miteco.gob.es/es/parques-nacionales-oapn/parques-nacionales/ordesa-y-monte-perdido/" target="_blank"><span class="ab-i">🏔</span><span class="ab-t">Parque Nacional Ordesa — web oficial</span><span class="ab-a">↗</span></a>
   <div class="lbl">Conducción Canfranc → Torla</div>
   <div class="tc">
     <div class="tr"><span class="tf">Canfranc → Biescas (A-136/A-23)</span><span class="tt">~45min</span><span class="tk">47km</span></div>
@@ -400,7 +421,12 @@ a.rb.w{background:var(--bll);color:var(--bl);border:1px solid #93c5fd}
   <div class="lbl">Opciones de ruta</div>
   <div class="ib info"><div class="ibt">Opción A — Fondo del Valle (Recomendada)</div>~17,5 km · +550 m · 5,5-6h. GR-11 por el cañón hasta Cola de Caballo.</div>
   <div class="ib info"><div class="ibt">Opción B — Senda Cazadores + Faja de Pelay</div>~18 km · +1.100 m · 7-8h. Vistas aéreas desde 1.850 m. La foto de portada del viaje.</div>
-  <a class="ab wil" href="https://es.wikiloc.com/rutas-senderismo/ordesa-cola-de-caballo" target="_blank"><span class="ab-i">🧭</span><span class="ab-t">Cola de Caballo en Wikiloc</span><span class="ab-a">↗</span></a>
+  <a class="ab wil" href="https://es.wikiloc.com/rutas-senderismo/cascada-cola-de-caballo-valle-de-ordesa-35402647" target="_blank"><span class="ab-i">🧭</span><span class="ab-t">Opción A — Fondo del Valle (Wikiloc)</span><span class="ab-a">↗</span></a>
+  <a class="ab wil" href="https://es.wikiloc.com/rutas-senderismo/circular-a-la-cola-de-caballo-por-la-faja-de-pelay-parque-nacional-de-ordesa-huesca-28418941" target="_blank"><span class="ab-i">🧭</span><span class="ab-t">Opción B — Senda Cazadores + Faja de Pelay (Wikiloc)</span><span class="ab-a">↗</span></a>
+  <div class="ib ok"><div class="ibt">🛒 Recordatorio — Comprar bocadillos el Martes por la tarde</div>
+    <strong>Aliprox Canfranc</strong> (Eroski) · Av. Fernando el Católico 15, Canfranc Estación · A 2 min a pie del hotel · Cierra 20:00h. Al volver de Francia el martes (~18:30h) tenéis tiempo.
+  </div>
+  <a class="ab maps" href="https://maps.google.com/maps?q=Aliprox+Eroski+Avenida+Fernando+el+Católico+15+Canfranc+Estacion" target="_blank"><span class="ab-i">🛒</span><span class="ab-t">Aliprox Canfranc — ver en Maps</span><span class="ab-a">↗</span></a>
   <div class="lbl">Horario</div>
   <div class="sc">
     <div class="si br"><span class="st">7:30h</span><span class="si-i">🍳</span><span class="si-t">Desayuno en el hotel (buffet abre 7:30h). Rápido y contundente.</span></div>
@@ -438,10 +464,14 @@ a.rb.w{background:var(--bll);color:var(--bl);border:1px solid #93c5fd}
     <div class="tr"><span class="tf">TOTAL conducción</span><span class="tt">~3h00</span><span class="tk">150km</span></div>
   </div>
   <a class="ab maps" href="https://maps.google.com/maps?saddr=Canfranc+Estacion&daddr=Selva+de+Oza,Huesca+to:Anso,Huesca+to:Siresa,Huesca+to:Canfranc+Estacion" target="_blank"><span class="ab-i">🗺</span><span class="ab-t">Ruta completa del día en Maps</span><span class="ab-a">↗</span></a>
-  <div class="lbl">Lugares</div>
-  <div class="cb"><strong>Selva de Oza</strong> — Hayedo y abetar en el Parque Natural Valles Occidentales. Terreno llano junto al río. Ideal para trípode.</div>
+  <div class="lbl">Lugares · Más información</div>
+  <div class="cb"><strong>Selva de Oza</strong> — Hayedo y abetar en el Parque Natural Valles Occidentales. Terreno llano junto al río Aragón Subordán. Ideal para trípode.</div>
+  <a class="ab web" href="https://www.vallesoccidentales.es" target="_blank"><span class="ab-i">🌲</span><span class="ab-t">Parque Natural Valles Occidentales</span><span class="ab-a">↗</span></a>
+  <a class="ab maps" href="https://maps.google.com/maps?q=Selva+de+Oza+Hecho+Huesca" target="_blank"><span class="ab-i">🗺</span><span class="ab-t">Selva de Oza — ver en Maps</span><span class="ab-a">↗</span></a>
   <div class="cb"><strong>Ansó — Conjunto Histórico-Artístico.</strong> Callizos, iglesia gótica de San Pedro (s. XVI). Aparcar en la entrada: casco peatonal.</div>
+  <a class="ab web" href="https://www.valledeanso.es" target="_blank"><span class="ab-i">🏘</span><span class="ab-t">Valle de Ansó — turismo oficial</span><span class="ab-a">↗</span></a>
   <div class="cb"><strong>Monasterio de Siresa (s. IX)</strong> — Románico aragonés. De paso en el regreso — 20 minutos.</div>
+  <a class="ab web" href="https://maps.google.com/maps?q=Monasterio+de+Siresa+Huesca" target="_blank"><span class="ab-i">⛪</span><span class="ab-t">Monasterio de Siresa — ver en Maps</span><span class="ab-a">↗</span></a>
   <div class="lbl">Horario</div>
   <div class="sc">
     <div class="si br"><span class="st">7:30-8h</span><span class="si-i">🍳</span><span class="si-t">Desayuno en el hotel (buffet incluido). Sin prisas.</span></div>
