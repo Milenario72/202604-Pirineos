@@ -94,6 +94,20 @@ a.rb.w{background:var(--bll);color:var(--bl);border:1px solid #93c5fd}
 .mb-i{font-size:22px;flex-shrink:0}.mb-t{flex:1}.mb-a{color:#0ea5e9;font-size:18px}
 .mbr{display:flex;gap:8px;margin-bottom:10px}
 .mbr .mb{margin-bottom:0;flex:1;padding:12px 10px}
+/* WEATHER WIDGET */
+.wx{background:linear-gradient(135deg,#1a3d5c 0%,#2c6faa 100%);border-radius:var(--r);padding:14px 16px;margin-bottom:14px;color:#fff;box-shadow:var(--sh)}
+.wx-date{font-size:11px;opacity:.6;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.wx-loading{display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(255,255,255,.7)}
+.wx-spinner{width:18px;height:18px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.wx-inner{display:flex;align-items:center;gap:14px}
+.wx-icon{font-size:46px;flex-shrink:0;line-height:1}
+.wx-data{flex:1}
+.wx-temps{font-size:24px;font-weight:800;line-height:1;margin-bottom:4px}
+.wx-temps span{font-size:15px;font-weight:400;opacity:.8}
+.wx-desc{font-size:15px;font-weight:600;margin-bottom:4px}
+.wx-extra{font-size:13px;opacity:.78;line-height:1.6}
+.wx-err{font-size:13px;color:rgba(255,255,255,.7)}
 
 /* TRANSPORT */
 .tc{background:var(--wh);border-radius:var(--rs);overflow:hidden;border:1px solid var(--bd);margin-bottom:10px}
@@ -203,10 +217,11 @@ a.rb.w{background:var(--bll);color:var(--bl);border:1px solid #93c5fd}
     <button class="ach" data-toggle="1">⚠ Leer antes de salir <span class="arr open">▾</span></button>
     <div class="acb open"><ul>
       <li><strong>Ordesa (Mié 1 Abr):</strong> bus lanzadera desde Torla, sin venta online.</li>
-      <li><strong>Sansanet (Lun 30):</strong> sin cobertura móvil — descarga Wikiloc antes.</li>
+      <li><strong>Sansanet (Vie 3 Abr):</strong> sin cobertura móvil — descarga Wikiloc antes de salir. Llevar monedas para el parquímetro.</li>
       <li><strong>Gasolina:</strong> repostar en Jaca. Sin gasolinera en Hecho/Ansó.</li>
-      <li><strong>Francia (días 2 y 3):</strong> DNI/pasaporte + efectivo euros.</li>
+      <li><strong>Francia (días 3 y 4):</strong> DNI/pasaporte + efectivo euros.</li>
       <li><strong>Bocadillos Ordesa:</strong> comprar martes tarde en Aliprox (cierra 20h).</li>
+      <li><strong>Noche en Logroño (Vie 3):</strong> Hotel Carlton Rioja — confirmar reserva.</li>
     </ul></div>
   </div>
 
@@ -214,12 +229,12 @@ a.rb.w{background:var(--bll);color:var(--bl);border:1px solid #93c5fd}
   <div class="stw">
     <button class="sr" data-go="pg-p1">
       <div class="sdb" style="background:#1a3d5c"><div class="sdb-n">1</div><div class="sdb-d">DOM</div><div class="sdb-f">29 Mar</div></div>
-      <div class="srb"><div class="sr-t">Llegada a Canfranc</div><div class="sr-s">Madrid → Jaca → Canfranc · ~453 km</div><div class="sr-tags"><span class="tag">🍽 Rosa Rosae 13:15h</span><span class="tag g">✓ Reservado</span></div></div>
+      <div class="srb"><div class="sr-t">Llegada a Canfranc</div><div class="sr-s">Madrid → Jaca → Canfranc · ~453 km</div><div class="sr-tags"><span class="tag">🍽 Las 3 Ranas 13:45h</span><span class="tag g">✓ Reservado</span></div></div>
       <div class="sa">›</div>
     </button>
     <button class="sr" data-go="pg-p2">
       <div class="sdb" style="background:#1e4d7a"><div class="sdb-n">2</div><div class="sdb-d">LUN</div><div class="sdb-f">30 Mar</div></div>
-      <div class="srb"><div class="sr-t">Ibón de Estanés</div><div class="sr-s">Ruta circular · 12,5 km · +580 m · 🇫🇷</div><div class="sr-tags"><span class="tag">🍽 La Internacional</span><span class="tag g">✓ Reservado</span></div></div>
+      <div class="srb"><div class="sr-t">Monte Oroel · San Juan de la Peña</div><div class="sr-s">Jaca · Santa Cruz de la Serós · ~35 km</div><div class="sr-tags"><span class="tag">🥾 Oroel 1.769m</span><span class="tag o">🍽 Espantabrujas: pdte</span></div></div>
       <div class="sa">›</div>
     </button>
     <button class="sr" data-go="pg-p3">
@@ -239,7 +254,12 @@ a.rb.w{background:var(--bll);color:var(--bl);border:1px solid #93c5fd}
     </button>
     <button class="sr" data-go="pg-p6">
       <div class="sdb" style="background:#3d8ed4"><div class="sdb-n">6</div><div class="sdb-d">VIE</div><div class="sdb-f">3 Abr</div></div>
-      <div class="srb"><div class="sr-t">Regreso a Madrid</div><div class="sr-s">Canfranc → Madrid · ~453 km</div><div class="sr-tags"><span class="tag">Parada opcional Zaragoza</span></div></div>
+      <div class="srb"><div class="sr-t">Ibón de Estanés · La Jacetania · Logroño</div><div class="sr-s">Sansanet · Castiello de Jaca → Logroño · ~185 km</div><div class="sr-tags"><span class="tag">🥾 Ibón Estanés</span><span class="tag o">🍽 La Jacetania: pdte</span><span class="tag">🏨 Carlton Rioja</span></div></div>
+      <div class="sa">›</div>
+    </button>
+    <button class="sr" data-go="pg-p7">
+      <div class="sdb" style="background:#2d6b2d"><div class="sdb-n">7</div><div class="sdb-d">SÁB</div><div class="sdb-f">4 Abr</div></div>
+      <div class="srb"><div class="sr-t">Regreso a Madrid</div><div class="sr-s">Logroño → Madrid · ~330 km · ~3h30</div><div class="sr-tags"><span class="tag">🏠 Fin del viaje</span></div></div>
       <div class="sa">›</div>
     </button>
   </div>
@@ -247,13 +267,14 @@ a.rb.w{background:var(--bll);color:var(--bl);border:1px solid #93c5fd}
   <div class="lbl" style="margin-top:20px">Estado de reservas</div>
   <div class="rlc">
     <div class="rlh">Restaurantes</div>
-    <div class="rr"><div class="rdot d"></div><div class="ri"><div class="rw">Dom 29 · Comida 13:15h</div><div class="rn">Rosa Rosae — Jaca</div></div><span class="rb d">✓ Reservado</span></div>
-    <div class="rr"><div class="rdot d"></div><div class="ri"><div class="rw">Lun 30 · Comida 14:45h</div><div class="rn">La Internacional — Barceló</div></div><span class="rb d">✓ Reservado</span></div>
+    <div class="rr"><div class="rdot d"></div><div class="ri"><div class="rw">Dom 29 · Comida 13:45h</div><div class="rn">Las 3 Ranas — Jaca</div></div><span class="rb d">✓ Reservado</span></div>
+    <div class="rr"><div class="rdot p"></div><div class="ri"><div class="rw">Lun 30 · Comida ~14:00h · Santa Cruz de la Serós</div><div class="rn">Espantabrujas</div></div><a class="rb c" href="tel:+34655644381">📞 Llamar</a></div>
     <div class="rr"><div class="rdot p"></div><div class="ri"><div class="rw">Mar 31 · Comida ~14:30h</div><div class="rn">Le Majestic — Pau</div></div><a class="rb w" href="https://www.thefork.es/buscar?q=le+majestic+pau" target="_blank">TheFork ↗</a></div>
     <div class="rr"><div class="rdot d"></div><div class="ri"><div class="rw">Mar 31 · Cena 21:15h</div><div class="rn">Restaurante 1928 — Barceló</div></div><span class="rb d">✓ Reservado</span></div>
     <div class="rr"><div class="rdot n"></div><div class="ri"><div class="rw">Mié 1 · Cena ~20:30h</div><div class="rn">El Internacional — Barceló</div></div><span class="rb n">Sin decidir</span></div>
     <div class="rr"><div class="rdot d"></div><div class="ri"><div class="rw">Jue 2 · Comida 14:30h</div><div class="rn">Canteré — Hecho</div></div><span class="rb d">✓ Reservado</span></div>
-    <div class="rr"><div class="rdot d"></div><div class="ri"><div class="rw">Vie 3 · Comida 14:00h · Zaragoza</div><div class="rn">La Rinconada de Lorenzo</div></div><span class="rb d">✓ Reservado</span></div>
+    <div class="rr"><div class="rdot p"></div><div class="ri"><div class="rw">Vie 3 · Comida 14:30h · Castiello de Jaca</div><div class="rn">La Jacetania</div></div><a class="rb c" href="tel:+34619247419">📞 Llamar</a></div>
+    <div class="rr"><div class="rdot p"></div><div class="ri"><div class="rw">Vie 3 · Noche — Logroño</div><div class="rn">Hotel Carlton Rioja</div></div><a class="rb w" href="https://www.hotelcarltonrioja.es" target="_blank">Reservar ↗</a></div>
   </div>
 
   <div class="lbl" style="margin-top:20px">Accesos rápidos</div>
@@ -270,6 +291,7 @@ a.rb.w{background:var(--bll);color:var(--bl);border:1px solid #93c5fd}
   <button class="nb" data-go="pg-p4"><span>4</span><span>Mié</span></button>
   <button class="nb" data-go="pg-p5"><span>5</span><span>Jue</span></button>
   <button class="nb" data-go="pg-p6"><span>6</span><span>Vie</span></button>
+  <button class="nb" data-go="pg-p7"><span>7</span><span>Sáb</span></button>
   <button class="nb" data-go="pg-pc"><span>✅</span><span>Lista</span></button>
 </nav>
 </div>
@@ -278,8 +300,9 @@ a.rb.w{background:var(--bll);color:var(--bl);border:1px solid #93c5fd}
 <div class="pg" id="pg-p1">
 <div class="tb"><button class="tbb" data-go="pg-ph">‹</button><span class="tbt">Día 1 · Llegada a Canfranc</span><button class="tbb" data-go="pg-ph">⌂</button></div>
 <div class="ct">
-  <div class="dh"><div class="dh-n">Día 1 · Domingo, 29 de Marzo 2026</div><div class="dh-t">LLEGADA A CANFRANC</div><div class="dh-s">Madrid → Jaca → Canfranc Estación · ~453 km</div><div class="dh-chips"><span class="dh-chip">🚗 453 km · ~4h05</span><span class="dh-chip">🍽 Rosa Rosae 13:15h</span><span class="dh-chip">✓ Reservado</span></div></div>
-  <a class="mb" href="https://www.meteoblue.com/es/tiempo/semana/canfranc_espa%C3%B1a_3126580" target="_blank"><span class="mb-i">🌤</span><span class="mb-t">Previsión del tiempo — Canfranc</span><span class="mb-a">↗</span></a>
+  <div class="dh"><div class="dh-n">Día 1 · Domingo, 29 de Marzo 2026</div><div class="dh-t">LLEGADA A CANFRANC</div><div class="dh-s">Madrid → Jaca → Canfranc Estación · ~453 km</div><div class="dh-chips"><span class="dh-chip">🚗 453 km · ~4h05</span><span class="dh-chip">🍽 Las 3 Ranas 13:45h</span><span class="dh-chip">✓ Reservado</span></div></div>
+  <div class="wx" id="wx-p1"><div class="wx-date">Domingo 29 de Marzo · Canfranc Estación</div><div class="wx-loading"><div class="wx-spinner"></div>Cargando previsión...</div></div>
+  <a class="mb" href="https://www.meteoblue.com/es/tiempo/semana/canfranc_espa%C3%B1a_3126580" target="_blank"><span class="mb-i">🌤</span><span class="mb-t">Previsión completa — Canfranc</span><span class="mb-a">↗</span></a>
   <div class="lbl">Conducción</div>
   <div class="tc">
     <div class="tr"><span class="tf">Madrid → Zaragoza (AP-2)</span><span class="tt">~2h10</span><span class="tk">300km</span></div>
@@ -300,7 +323,7 @@ a.rb.w{background:var(--bll);color:var(--bl);border:1px solid #93c5fd}
     <div class="si"><span class="st">8:30h</span><span class="si-i">🚗</span><span class="si-t">Salida de Madrid por A-2/AP-2/A-23.</span></div>
     <div class="si"><span class="st">10:45h</span><span class="si-i">⛽</span><span class="si-t">Parada Zaragoza/Huesca — café y gasolinera.</span></div>
     <div class="si"><span class="st">13:00h</span><span class="si-i">🏰</span><span class="si-t">Jaca. Paseo por el casco histórico o la Ciudadela.</span></div>
-    <div class="si hi"><span class="st">13:15h</span><span class="si-i">🍽</span><span class="si-t"><strong>COMIDA — Rosa Rosae, Jaca.</strong></span></div>
+    <div class="si hi"><span class="st">13:45h</span><span class="si-i">🍽</span><span class="si-t"><strong>COMIDA — Las 3 Ranas, Jaca.</strong></span></div>
     <div class="si"><span class="st">16:30h</span><span class="si-i">🏨</span><span class="si-t">Check-in en el hotel.</span></div>
     <div class="si"><span class="st">17:15h</span><span class="si-i">🚶</span><span class="si-t">Paseo de los Melancólicos (~40 min, llano).</span></div>
     <div class="si"><span class="st">18:00h</span><span class="si-i">🏛</span><span class="si-t">Visita interior de la Estación (gratuito).</span></div>
@@ -308,7 +331,7 @@ a.rb.w{background:var(--bll);color:var(--bl);border:1px solid #93c5fd}
     <div class="si"><span class="st">20:30h</span><span class="si-i">🍷</span><span class="si-t">Cena en el hotel o en Jaca.</span></div>
   </div>
   <div class="lbl" style="margin-top:18px">Restaurantes</div>
-  <div class="rc res"><div class="rct"><div class="rcs g">■ Comida 13:15h · Ya Reservado ✓</div><div class="rcn">Rosa Rosae — Jaca</div></div><div class="rcd">C/ Autonomía de Aragón 15 (Parque San Lure). Cocina creativa, menú ~€20-28. Abre Jue-Dom.</div><div class="rca"><a class="rab call" href="tel:+34623409004">📞 +34 623 40 90 04</a></div></div>
+  <div class="rc res"><div class="rct"><div class="rcs g">■ Comida 13:45h · Ya Reservado ✓</div><div class="rcn">Las 3 Ranas — Jaca</div></div><div class="rcd">C/ La Salud 10, 22700 Jaca. Cocina de mercado, menú ~€24-28. Pintxos, carrilleras, tortilla de patata. Terraza con vistas al Monte Oroel. Muy bien valorado — recomendado Guía Repsol.</div><div class="rca"><a class="rab call" href="tel:+34974360660">📞 +34 974 36 06 60</a><a class="rab webr" href="https://www.lastresranas.es" target="_blank">Web ↗</a></div></div>
   <div class="rc neu"><div class="rct"><div class="rcs b">■ Cena · Opciones</div><div class="rcn">El Internacional — Barceló Canfranc</div></div><div class="rcd">En el propio hotel. Trucha imperial, migas del pastor. 20:00-22:00h.</div><div class="rca"><a class="rab call" href="tel:+34974561900">📞 Hotel</a></div></div>
   <div class="pnrow"><button class="ab maps" data-go="pg-ph"><span class="ab-i">⌂</span><span class="ab-t">Inicio</span></button><button class="ab maps" data-go="pg-p2"><span class="ab-t">Día 2 ›</span></button></div>
 </div>
@@ -316,41 +339,77 @@ a.rb.w{background:var(--bll);color:var(--bl);border:1px solid #93c5fd}
 
 <!-- ══════════════ PAGE: DÍA 2 ══════════════ -->
 <div class="pg" id="pg-p2">
-<div class="tb"><button class="tbb" data-go="pg-p1">‹</button><span class="tbt">Día 2 · Ibón de Estanés</span><button class="tbb" data-go="pg-ph">⌂</button></div>
+<div class="tb"><button class="tbb" data-go="pg-p1">‹</button><span class="tbt">Día 2 · Oroel · San Juan de la Peña</span><button class="tbb" data-go="pg-ph">⌂</button></div>
 <div class="ct">
-  <div class="dh"><div class="dh-n">Día 2 · Lunes, 30 de Marzo 2026</div><div class="dh-t">IBÓN DE ESTANÉS</div><div class="dh-s">Canfranc → Col du Somport → Sansanet (Francia)</div><div class="dh-chips"><span class="dh-chip">🥾 12,5 km · +580m</span><span class="dh-chip">🇫🇷 Francia</span><span class="dh-chip">✓ Comida reservada</span></div></div>
-  <a class="mb" href="https://www.meteoblue.com/es/tiempo/semana/urdos_francia_2971352" target="_blank"><span class="mb-i">🌤</span><span class="mb-t">Previsión — Col du Somport / Urdos</span><span class="mb-a">↗</span></a>
-  <div class="ib warn"><div class="ibt">⚠ Antes de salir esta mañana</div><ul><li>Sin cobertura móvil — <strong>descarga Wikiloc esta noche.</strong></li><li>Llevar monedas para el parquímetro.</li><li>Perros prohibidos (Parque Nacional), incluso con correa.</li><li>1,5 L de agua/persona — sin fuentes en ruta.</li></ul></div>
-  <div class="lbl">Al parking de Sansanet</div>
-  <div class="tc">
-    <div class="tr"><span class="tf">Canfranc → Candanchú (N-330)</span><span class="tt">~10min</span><span class="tk">10km</span></div>
-    <div class="tr"><span class="tf">Candanchú → Col du Somport</span><span class="tt">~3min</span><span class="tk">2km</span></div>
-    <div class="tr"><span class="tf">Col → Parking (gira ▶ DERECHA)</span><span class="tt">~4min</span><span class="tk">3km</span></div>
-    <div class="tr"><span class="tf">TOTAL</span><span class="tt">~17min</span><span class="tk">15km</span></div>
+  <div class="dh"><div class="dh-n">Día 2 · Lunes, 30 de Marzo 2026</div><div class="dh-t">MONTE OROEL · SAN JUAN DE LA PEÑA</div><div class="dh-s">Jaca · Santa Cruz de la Serós · Monasterio · ~35 km</div><div class="dh-chips"><span class="dh-chip">🥾 Oroel 7,3 km · +580m</span><span class="dh-chip">⛪ Románico s. X</span><span class="dh-chip">🍽 Espantabrujas pdte.</span></div></div>
+  <div class="wx" id="wx-p2"><div class="wx-date">Lunes 30 de Marzo · Jaca / Monte Oroel</div><div class="wx-loading"><div class="wx-spinner"></div>Cargando previsión...</div></div>
+  <a class="mb" href="https://www.meteoblue.com/es/tiempo/semana/jaca_espa%C3%B1a_3120211" target="_blank"><span class="mb-i">🌤</span><span class="mb-t">Previsión completa — Jaca</span><span class="mb-a">↗</span></a>
+
+  <div class="lbl">Mañana — Monte Oroel (1.769 m)</div>
+  <div class="cb"><strong>Peña Oroel</strong>, la montaña emblemática que domina Jaca, ofrece uno de los mejores miradores del Pirineo aragonés. Desde la cumbre se divisan Collarada, Aspe, Bisaurin, Midi d'Ossau y toda la Jacetania. La ruta desde el Parador sigue el sendero PR-HU 66 perfectamente señalizado: 37 curvas en zigzag por bosque de pinos hasta la meseta superior, y desde ahí a la enorme cruz de cima. Sin dificultad técnica, solo desnivel. Puede haber nieve residual a partir de 1.500 m en marzo — llevar bastones y calzado impermeable.</div>
+  <div class="ib warn"><div class="ibt">🚗 Cómo llegar al parking del Parador</div>
+    Desde Jaca tomar la carretera <strong>A-1205</strong> dirección Bernúes (sale al sur desde el centro). A ~5 km, antes de llegar a Bernúes, señal "<strong>Parador de Oroel</strong>" a la izquierda. Pista asfaltada-bacheada ~1,5 km hasta el gran parking gratuito junto al Parador (1.177 m).
   </div>
-  <a class="ab maps" href="https://maps.google.com/maps?q=Parking+Sansanet+Col+du+Somport" target="_blank"><span class="ab-i">🗺</span><span class="ab-t">Parking Sansanet en Maps</span><span class="ab-a">↗</span></a>
-  <div class="lbl">Ruta · 12,5 km · +580m · 4-4,5h</div>
-  <div class="cb">Lago glaciar de 1.777 m en el Parque Nacional de los Pirineos franceses. Hayedo espectacular, agua azul turquesa. Posible <strong>hielo azul en bordes</strong> en marzo. Bajada con cascadas.</div>
-  <a class="ab wil" href="https://es.wikiloc.com/rutas-senderismo/parking-sansanet-ibon-de-estanes-cascada-de-espelunguere-circular-25907631" target="_blank"><span class="ab-i">🧭</span><span class="ab-t">Circular Sansanet → Ibón → Espélunguère</span><span class="ab-a">↗</span></a>
-  <a class="ab wil" href="https://es.wikiloc.com/rutas-senderismo/circular-sansanet-ibon-de-estanes-54465343" target="_blank"><span class="ab-i">🧭</span><span class="ab-t">Circular Sansanet — opción sencilla</span><span class="ab-a">↗</span></a>
+  <a class="ab maps" href="https://maps.google.com/maps?q=Parador+de+Oroel+Jaca+Huesca" target="_blank"><span class="ab-i">🗺</span><span class="ab-t">Parking Parador de Oroel en Maps</span><span class="ab-a">↗</span></a>
+  <a class="ab wil" href="https://es.wikiloc.com/rutas-senderismo/oroel-desde-parador-monte-oroel-11038437" target="_blank"><span class="ab-i">🧭</span><span class="ab-t">Peña Oroel desde el Parador — ida y vuelta (Wikiloc)</span><span class="ab-a">↗</span></a>
+  <a class="ab wil" href="https://es.wikiloc.com/rutas-carrera-por-montana/jaca-parador-pena-oroel-baros-jaca-133084361" target="_blank"><span class="ab-i">🧭</span><span class="ab-t">Circular Oroel con Senda de los Lobos (Wikiloc)</span><span class="ab-a">↗</span></a>
+
+  <div class="lbl">Tarde — Monasterio de San Juan de la Peña</div>
+  <div class="cb">Uno de los monumentos más impresionantes de España: el <strong>Monasterio Viejo (s. X)</strong> está literalmente tallado bajo un enorme peñón rocoso. Panteón Real de los reyes de Aragón, claustro románico con capiteles únicos. La leyenda lo vincula al Santo Grial. A 1,5 km carretera arriba, el <strong>Monasterio Nuevo (s. XVII)</strong> tiene museo, cafetería y la pradera de San Indalecio — ideal para descansar.</div>
+  <div class="cb">En la ruta, <strong>Santa Cruz de la Serós</strong>: pueblo medieval con dos joyas románicas — la Iglesia de Santa María (s. XI, antes monasterio de nobles aragonesas) y la Ermita de San Caprasio (s. XI, románico lombardo). La entrada al conjunto incluye ambas iglesias y el monasterio.</div>
+  <a class="ab web" href="https://www.monasteriosanjuan.com" target="_blank"><span class="ab-i">⛪</span><span class="ab-t">Monasterio San Juan de la Peña — web oficial</span><span class="ab-a">↗</span></a>
+  <a class="ab web" href="https://www.turismodearagon.com/ficha/real-monasterio-de-san-juan-de-la-pena/" target="_blank"><span class="ab-i">🏔</span><span class="ab-t">Info turismo Aragón — entrada y horarios</span><span class="ab-a">↗</span></a>
+
+  <div class="lbl">Miradores recomendados</div>
+  <div class="ib info"><div class="ibt">⭐ Balcón de los Pirineos</div>
+    El mejor mirador de la zona. Sale del Monasterio Nuevo: 15 min a pie llano (menos de 1 km). Vistas panorámicas espectaculares a toda la cadena pirenaica. Ruta señalizada, imprescindible no saltárselo.
+  </div>
+  <div class="ib info"><div class="ibt">📍 Mirador de la Pradera de San Indalecio</div>
+    Junto al Monasterio Nuevo. Vistas al norte hacia el Pirineo. Área recreativa con mesas y sombra — ideal para el picnic o descanso.
+  </div>
+  <div class="ib info"><div class="ibt">📍 Miradores de carretera A-1603</div>
+    En la carretera desde Santa Cruz hasta el Monasterio hay 3-4 miradores señalizados con parking. Vistas al valle del Aragón y la Jacetania. Parad en todos en la subida o bajada.
+  </div>
+  <div class="ib info"><div class="ibt">📍 Ermita de San Voto</div>
+    Pequeño desvío de 10 min desde la pradera. Mirador adicional con vistas al sur hacia el prepirineo.
+  </div>
+  <a class="ab wil" href="https://es.wikiloc.com/rutas-senderismo/miradores-san-juan-de-la-pena-balcon-de-los-pirineos" target="_blank"><span class="ab-i">🧭</span><span class="ab-t">Ruta miradores San Juan de la Peña (Wikiloc)</span><span class="ab-a">↗</span></a>
+
+  <div class="lbl">Logística del día</div>
+  <div class="tc">
+    <div class="tr"><span class="tf">Canfranc → Jaca (N-330a)</span><span class="tt">~25min</span><span class="tk">28km</span></div>
+    <div class="tr"><span class="tf">Jaca → Parking Parador Oroel (A-1205)</span><span class="tt">~15min</span><span class="tk">7km</span></div>
+    <div class="tr"><span class="tf">Parador → Santa Cruz de la Serós</span><span class="tt">~20min</span><span class="tk">12km</span></div>
+    <div class="tr"><span class="tf">Santa Cruz → Monasterio San Juan de la Peña</span><span class="tt">~15min</span><span class="tk">7km</span></div>
+    <div class="tr"><span class="tf">Monasterio → Canfranc</span><span class="tt">~35min</span><span class="tk">35km</span></div>
+    <div class="tr"><span class="tf">TOTAL conducción</span><span class="tt">~1h50</span><span class="tk">~89km</span></div>
+  </div>
+
   <div class="lbl">Horario</div>
   <div class="sc">
     <div class="si br"><span class="st">7:30h</span><span class="si-i">🍳</span><span class="si-t">Desayuno en el hotel (buffet incluido). Salir puntuales.</span></div>
-    <div class="si"><span class="st">8:15h</span><span class="si-i">🚗</span><span class="si-t">Salida del hotel.</span></div>
-    <div class="si"><span class="st">8:35h</span><span class="si-i">🅿</span><span class="si-t">Parking Sansanet. Activar track Wikiloc.</span></div>
-    <div class="si"><span class="st">10:30h</span><span class="si-i">💧</span><span class="si-t">Ibón de Estanés (1.777 m). Parada larga.</span></div>
-    <div class="si wa"><span class="st">11:30h</span><span class="si-i">⚠</span><span class="si-t">Descenso Espélunguère — escalera metálica. Pronunciado y resbaladizo.</span></div>
-    <div class="si"><span class="st">12:15h</span><span class="si-i">📷</span><span class="si-t">Cascada de Espélunguère — foto obligatoria.</span></div>
-    <div class="si"><span class="st">13:30h</span><span class="si-i">🚗</span><span class="si-t">Vuelta al parking. Regreso a Canfranc.</span></div>
-    <div class="si hi"><span class="st">14:45h</span><span class="si-i">🍽</span><span class="si-t"><strong>COMIDA — La Internacional, Barceló. (YA RESERVADO)</strong></span></div>
-    <div class="si"><span class="st">16:30h</span><span class="si-i">♨</span><span class="si-t">Tarde libre: spa, paseo Canfranc pueblo o Ciudadela Jaca.</span></div>
+    <div class="si"><span class="st">8:00h</span><span class="si-i">🚗</span><span class="si-t">Salida hacia Jaca y Parador de Oroel (A-1205 dirección Bernúes).</span></div>
+    <div class="si"><span class="st">8:45h</span><span class="si-i">🅿</span><span class="si-t">Parking Parador de Oroel (1.177 m). Preparar mochila y bastones.</span></div>
+    <div class="si"><span class="st">9:00h</span><span class="si-i">🥾</span><span class="si-t">Inicio subida a Peña Oroel. PR-HU 66 señalizado. 37 zigzags por bosque de pinos.</span></div>
+    <div class="si"><span class="st">10:45h</span><span class="si-i">🏔</span><span class="si-t">Meseta superior — se abre el horizonte. Collarada, Bisaurin, Midi d'Ossau.</span></div>
+    <div class="si"><span class="st">11:30h</span><span class="si-i">✝</span><span class="si-t">Cruz de la cima de Peña Oroel (1.769 m). Parada larga — vistas espectaculares.</span></div>
+    <div class="si"><span class="st">12:15h</span><span class="si-i">⬇</span><span class="si-t">Descenso al Parador (por la misma senda o Senda de los Lobos).</span></div>
+    <div class="si"><span class="st">13:30h</span><span class="si-i">🚗</span><span class="si-t">Regreso al coche. Dirección Santa Cruz de la Serós (~20 min).</span></div>
+    <div class="si hi"><span class="st">14:00h</span><span class="si-i">🍽</span><span class="si-t"><strong>COMIDA — Espantabrujas, Santa Cruz de la Serós. RESERVAR.</strong></span></div>
+    <div class="si"><span class="st">15:30h</span><span class="si-i">🏛</span><span class="si-t">Iglesia de Santa María y Ermita de San Caprasio — románico s. XI.</span></div>
+    <div class="si"><span class="st">16:00h</span><span class="si-i">⛪</span><span class="si-t">Subida al Monasterio de San Juan de la Peña (~15 min en coche).</span></div>
+    <div class="si"><span class="st">16:15h</span><span class="si-i">🌄</span><span class="si-t"><strong>Balcón de los Pirineos</strong> — 15 min desde el Monasterio Nuevo. Imprescindible.</span></div>
+    <div class="si"><span class="st">16:45h</span><span class="si-i">⛪</span><span class="si-t">Visita Monasterio Viejo — claustro románico, Panteón Real. Entrada ~€10. Guía gratuita.</span></div>
+    <div class="si"><span class="st">18:30h</span><span class="si-i">🚗</span><span class="si-t">Regreso a Canfranc (~35 min).</span></div>
+    <div class="si"><span class="st">20:00h</span><span class="si-i">🍷</span><span class="si-t">Cena (ver sugerencias).</span></div>
   </div>
-  <div class="lbl" style="margin-top:18px">Restaurante</div>
-  <div class="rc res"><div class="rct"><div class="rcs g">■ Comida 14:45h · Ya Reservado ✓</div><div class="rcn">La Internacional — Barceló Canfranc</div></div><div class="rcd">En el propio hotel. Trucha imperial del Pirineo, migas del pastor.</div><div class="rca"><a class="rab callg" href="tel:+34974561900">📞 Hotel</a></div></div>
+
+  <div class="lbl" style="margin-top:18px">Restaurantes</div>
+  <div class="rc pend"><div class="rct"><div class="rcs o">■ Comida ~14:00h · Pendiente reservar</div><div class="rcn">Espantabrujas — Santa Cruz de la Serós</div></div><div class="rcd">C/ Barrio Bajo 35, Santa Cruz de la Serós. Restaurante rural de piedra junto al pueblo románico. Especialidad en horno de leña: migas de pastor, cordero asado, pizza artesana, costillas a la miel. Tarta de queso casera imprescindible. Menú ~€15-21. Google: 4,5⭐ (546 reseñas). <strong>Reservar con antelación — pocas mesas.</strong></div><div class="rca"><a class="rab call" href="tel:+34655644381">📞 +34 655 64 43 81</a><a class="rab webr" href="https://www.espantabrujas.com" target="_blank">Web ↗</a></div></div>
   <div class="lbl" style="margin-top:18px">Cena · Sugerencias</div>
-  <div class="rc neu"><div class="rct"><div class="rcs b">■ Opción 1 · Canfranc Estación</div><div class="rcn">El Internacional — Barceló Canfranc</div></div><div class="rcd">En el propio hotel. Cómodo después de la ruta. Cocina aragonesa, carta variada. 20:00-22:00h.</div><div class="rca"><a class="rab call" href="tel:+34974561900">📞 +34 974 56 19 00</a></div></div>
-  <div class="rc neu"><div class="rct"><div class="rcs b">■ Opción 2 · Jaca (25 min)</div><div class="rcn">La Tasca de Ana — Jaca</div></div><div class="rcd">C/ Ferrenal 3, Jaca · Tel: +34 974 36 36 50. Tapas y raciones de calidad, ambiente local animado. Imprescindible reservar en Semana Santa.</div><div class="rca"><a class="rab call" href="tel:+34974363650">📞 +34 974 36 36 50</a></div></div>
-  <div class="rc neu"><div class="rct"><div class="rcs b">■ Opción 3 · Jaca (25 min)</div><div class="rcn">Restaurante Gastón — Jaca</div></div><div class="rcd">C/ Lanuza 3, Jaca · Tel: +34 974 36 20 50. Referente gastronómico de Jaca. Ternasco a la brasa, bacalao confitado, buena bodega aragonesa.</div><div class="rca"><a class="rab call" href="tel:+34974362050">📞 +34 974 36 20 50</a></div></div>
+  <div class="rc neu"><div class="rct"><div class="rcs b">■ Opción 1 · Canfranc Estación</div><div class="rcn">El Internacional — Barceló Canfranc</div></div><div class="rcd">En el propio hotel. Cómodo tras el día largo. Cocina aragonesa, carta variada. 20:00-22:00h.</div><div class="rca"><a class="rab call" href="tel:+34974561900">📞 +34 974 56 19 00</a></div></div>
+  <div class="rc neu"><div class="rct"><div class="rcs b">■ Opción 2 · Jaca (25 min)</div><div class="rcn">La Tasca de Ana — Jaca</div></div><div class="rcd">C/ Ferrenal 3, Jaca · Tel: +34 974 36 36 50. Tapas y raciones de calidad. Imprescindible reservar en Semana Santa.</div><div class="rca"><a class="rab call" href="tel:+34974363650">📞 +34 974 36 36 50</a></div></div>
+  <div class="rc neu"><div class="rct"><div class="rcs b">■ Opción 3 · Jaca (25 min)</div><div class="rcn">Restaurante Gastón — Jaca</div></div><div class="rcd">C/ Lanuza 3, Jaca · Tel: +34 974 36 20 50. Ternasco a la brasa, bacalao confitado, buena bodega.</div><div class="rca"><a class="rab call" href="tel:+34974362050">📞 +34 974 36 20 50</a></div></div>
   <div class="pnrow"><button class="ab maps" data-go="pg-p1"><span class="ab-t">‹ Día 1</span></button><button class="ab maps" data-go="pg-p3"><span class="ab-t">Día 3 ›</span></button></div>
 </div>
 </div>
@@ -360,6 +419,7 @@ a.rb.w{background:var(--bll);color:var(--bl);border:1px solid #93c5fd}
 <div class="tb"><button class="tbb" data-go="pg-p2">‹</button><span class="tbt">Día 3 · Lescun · Pau · Portalet</span><button class="tbb" data-go="pg-ph">⌂</button></div>
 <div class="ct">
   <div class="dh"><div class="dh-n">Día 3 · Martes, 31 de Marzo 2026</div><div class="dh-t">LESCUN · PAU · FORT DU PORTALET</div><div class="dh-s">Canfranc → Francia → Pau → Portalet → Canfranc · ~183 km</div><div class="dh-chips"><span class="dh-chip">🇫🇷 Día en Francia</span><span class="dh-chip">⭐ Cena 1928 ✓</span></div></div>
+  <div class="wx" id="wx-p3"><div class="wx-date">Martes 31 de Marzo · Lescun · Pau · Fort du Portalet</div><div class="wx-loading"><div class="wx-spinner"></div>Cargando previsión...</div></div>
   <div class="mbr"><a class="mb" href="https://www.meteoblue.com/es/tiempo/semana/lescun_francia_3001259" target="_blank"><span class="mb-i">🌤</span><span class="mb-t">Lescun</span><span class="mb-a">↗</span></a><a class="mb" href="https://www.meteoblue.com/es/tiempo/semana/pau_francia_2988358" target="_blank"><span class="mb-i">🌤</span><span class="mb-t">Pau</span><span class="mb-a">↗</span></a></div>
   <div class="lbl">Conducción del día</div>
   <div class="tc">
@@ -405,7 +465,8 @@ a.rb.w{background:var(--bll);color:var(--bl);border:1px solid #93c5fd}
 <div class="tb"><button class="tbb" data-go="pg-p3">‹</button><span class="tbt">Día 4 · Cola de Caballo</span><button class="tbb" data-go="pg-ph">⌂</button></div>
 <div class="ct">
   <div class="dh"><div class="dh-n">Día 4 · Miércoles, 1 de Abril 2026</div><div class="dh-t">COLA DE CABALLO — ORDESA</div><div class="dh-s">Canfranc → Torla → Pradera de Ordesa · ~82 km</div><div class="dh-chips"><span class="dh-chip">🚌 Bus lanzadera</span><span class="dh-chip">🥾 17-18 km · 7-8h</span><span class="dh-chip">🥪 Bocadillos</span></div></div>
-  <a class="mb" href="https://www.meteoblue.com/es/tiempo/semana/torla_espana_3107923" target="_blank"><span class="mb-i">🌤</span><span class="mb-t">Previsión — Torla-Ordesa</span><span class="mb-a">↗</span></a>
+  <div class="wx" id="wx-p4"><div class="wx-date">Miércoles 1 de Abril · Torla-Ordesa</div><div class="wx-loading"><div class="wx-spinner"></div>Cargando previsión...</div></div>
+  <a class="mb" href="https://www.meteoblue.com/es/tiempo/semana/torla_espana_3107923" target="_blank"><span class="mb-i">🌤</span><span class="mb-t">Previsión completa — Torla-Ordesa</span><span class="mb-a">↗</span></a>
   <div class="ib warn"><div class="ibt">⚠ Acceso obligatorio Semana Santa</div><ul><li>Aparcar en Torla · bus OrdesaBus (~€6 ida/vuelta).</li><li>Billetes <strong>solo presenciales</strong> — sin venta online.</li><li>Taquillas abren 5:45h · buses desde 6:00h.</li></ul></div>
   <a class="ab web" href="https://www.ordesabus.com" target="_blank"><span class="ab-i">🚌</span><span class="ab-t">Horarios actualizados — ordesabus.com</span><span class="ab-a">↗</span></a>
   <a class="ab web" href="https://www.miteco.gob.es/es/parques-nacionales-oapn/parques-nacionales/ordesa-y-monte-perdido/" target="_blank"><span class="ab-i">🏔</span><span class="ab-t">Parque Nacional Ordesa — web oficial</span><span class="ab-a">↗</span></a>
@@ -454,7 +515,8 @@ a.rb.w{background:var(--bll);color:var(--bl);border:1px solid #93c5fd}
 <div class="tb"><button class="tbb" data-go="pg-p4">‹</button><span class="tbt">Día 5 · Selva de Oza · Ansó</span><button class="tbb" data-go="pg-ph">⌂</button></div>
 <div class="ct">
   <div class="dh"><div class="dh-n">Día 5 · Jueves, 2 de Abril 2026</div><div class="dh-t">SELVA DE OZA · ANSÓ · SIRESA</div><div class="dh-s">Canfranc → Valle de Hecho → Ansó → Siresa → Canfranc · ~150 km</div><div class="dh-chips"><span class="dh-chip">🥾 5 km llano</span><span class="dh-chip">⭐ Michelin Bib</span><span class="dh-chip">✓ Canteré reservado</span></div></div>
-  <a class="mb" href="https://www.meteoblue.com/es/tiempo/semana/echo_espa%C3%B1a_3120867" target="_blank"><span class="mb-i">🌤</span><span class="mb-t">Previsión — Valle de Hecho</span><span class="mb-a">↗</span></a>
+  <div class="wx" id="wx-p5"><div class="wx-date">Jueves 2 de Abril · Valle de Hecho</div><div class="wx-loading"><div class="wx-spinner"></div>Cargando previsión...</div></div>
+  <a class="mb" href="https://www.meteoblue.com/es/tiempo/semana/echo_espa%C3%B1a_3120867" target="_blank"><span class="mb-i">🌤</span><span class="mb-t">Previsión completa — Valle de Hecho</span><span class="mb-a">↗</span></a>
   <div class="lbl">Conducción del día</div>
   <div class="tc">
     <div class="tr"><span class="tf">Canfranc → Puente la Reina (N-240)</span><span class="tt">~30min</span><span class="tk">22km</span></div>
@@ -497,34 +559,107 @@ a.rb.w{background:var(--bll);color:var(--bl);border:1px solid #93c5fd}
 
 <!-- ══════════════ PAGE: DÍA 6 ══════════════ -->
 <div class="pg" id="pg-p6">
-<div class="tb"><button class="tbb" data-go="pg-p5">‹</button><span class="tbt">Día 6 · Regreso a Madrid</span><button class="tbb" data-go="pg-ph">⌂</button></div>
+<div class="tb"><button class="tbb" data-go="pg-p5">‹</button><span class="tbt">Día 6 · Estanés · La Jacetania · Logroño</span><button class="tbb" data-go="pg-ph">⌂</button></div>
 <div class="ct">
-  <div class="dh" style="background:linear-gradient(135deg,#2d5a27 0%,#4a8c42 100%)"><div class="dh-n">Día 6 · Viernes, 3 de Abril 2026</div><div class="dh-t">REGRESO A MADRID</div><div class="dh-s">Canfranc → Jaca → Zaragoza (opc.) → Madrid · ~453 km</div><div class="dh-chips"><span class="dh-chip">🚗 453 km</span><span class="dh-chip">🍳 Desayuno en hotel</span><span class="dh-chip">🏠 ¡Hasta la próxima!</span></div></div>
-  <div class="mbr"><a class="mb" href="https://www.meteoblue.com/es/tiempo/semana/jaca_espa%C3%B1a_3120211" target="_blank"><span class="mb-i">🌤</span><span class="mb-t">Jaca</span><span class="mb-a">↗</span></a><a class="mb" href="https://www.meteoblue.com/es/tiempo/semana/zaragoza_espa%C3%B1a_3104324" target="_blank"><span class="mb-i">🌤</span><span class="mb-t">Zaragoza</span><span class="mb-a">↗</span></a></div>
-  <div class="lbl">Ruta de vuelta</div>
+  <div class="dh"><div class="dh-n">Día 6 · Viernes, 3 de Abril 2026</div><div class="dh-t">IBÓN DE ESTANÉS · LOGROÑO</div><div class="dh-s">Canfranc → Sansanet → Castiello de Jaca → Logroño · ~185 km</div><div class="dh-chips"><span class="dh-chip">🥾 Ibón Estanés</span><span class="dh-chip">🍽 La Jacetania 14:30h</span><span class="dh-chip">🏨 Carlton Rioja</span></div></div>
+  <div class="wx" id="wx-p6"><div class="wx-date">Viernes 3 de Abril · Ibón de Estanés / Canfranc</div><div class="wx-loading"><div class="wx-spinner"></div>Cargando previsión...</div></div>
+  <div class="mbr"><a class="mb" href="https://www.meteoblue.com/es/tiempo/semana/canfranc_espa%C3%B1a_3126580" target="_blank"><span class="mb-i">🌤</span><span class="mb-t">Canfranc/Estanés</span><span class="mb-a">↗</span></a><a class="mb" href="https://www.meteoblue.com/es/tiempo/semana/logrono_espa%C3%B1a_3120219" target="_blank"><span class="mb-i">🌤</span><span class="mb-t">Logroño</span><span class="mb-a">↗</span></a></div>
+
+  <div class="ib warn"><div class="ibt">⚠ Antes de salir esta mañana</div><ul>
+    <li>Sin cobertura móvil en Sansanet — <strong>descarga Wikiloc esta noche.</strong></li>
+    <li>Llevar monedas para el parquímetro.</li>
+    <li>1,5 L de agua/persona — sin fuentes en ruta.</li>
+    <li>Hoy hacéis check-out del Barceló — cargar el coche antes de salir.</li>
+  </ul></div>
+
+  <div class="lbl">Mañana — Ibón de Estanés desde Sansanet</div>
+  <div class="cb">El ibón de Estanés (1.777 m) desde el parking de Sansanet: la ruta clásica y más directa al lago glaciar. Hayedo espectacular, agua azul turquesa, posible hielo en bordes en abril. Perfecta para esta última mañana de montaña del viaje. <strong>Ida y vuelta sencilla: ~8-9 km · +400m · 2,5-3h.</strong></div>
+  <div class="lbl">Cómo llegar al parking de Sansanet</div>
   <div class="tc">
-    <div class="tr"><span class="tf">Canfranc → Jaca (N-330a)</span><span class="tt">~25min</span><span class="tk">28km</span></div>
-    <div class="tr"><span class="tf">Jaca → Huesca (A-23)</span><span class="tt">~40min</span><span class="tk">55km</span></div>
-    <div class="tr"><span class="tf">Huesca → Zaragoza</span><span class="tt">~50min</span><span class="tk">70km</span></div>
-    <div class="tr"><span class="tf">Zaragoza → Madrid (AP-2/A-2)</span><span class="tt">~2h10</span><span class="tk">300km</span></div>
-    <div class="tr"><span class="tf">TOTAL</span><span class="tt">~4h05</span><span class="tk">453km</span></div>
+    <div class="tr"><span class="tf">Canfranc → Candanchú (N-330)</span><span class="tt">~10min</span><span class="tk">10km</span></div>
+    <div class="tr"><span class="tf">Candanchú → Col du Somport (frontera)</span><span class="tt">~3min</span><span class="tk">2km</span></div>
+    <div class="tr"><span class="tf">Col → Parking Sansanet (gira ▶ DERECHA)</span><span class="tt">~4min</span><span class="tk">3km</span></div>
+    <div class="tr"><span class="tf">TOTAL desde Canfranc</span><span class="tt">~17min</span><span class="tk">15km</span></div>
   </div>
-  <a class="ab maps" href="https://maps.google.com/maps?saddr=Canfranc+Estacion&daddr=Madrid" target="_blank"><span class="ab-i">🗺</span><span class="ab-t">Ruta de vuelta en Google Maps</span><span class="ab-a">↗</span></a>
-  <div class="ib warn"><div class="ibt">⚠ Tips del regreso</div><ul><li>Radar fijo A-23 Jaca–Huesca.</li><li>Llegar a Madrid <strong>antes de las 16h</strong> para evitar tráfico.</li></ul></div>
+  <a class="ab maps" href="https://maps.google.com/maps?q=Parking+Sansanet+Col+du+Somport" target="_blank"><span class="ab-i">🗺</span><span class="ab-t">Parking Sansanet en Maps</span><span class="ab-a">↗</span></a>
+  <a class="ab wil" href="https://es.wikiloc.com/rutas-senderismo/ibon-de-estanes-desde-parking-de-sansanet-otono-29853336" target="_blank"><span class="ab-i">🧭</span><span class="ab-t">Ibón Estanés desde Sansanet — ida y vuelta (Wikiloc)</span><span class="ab-a">↗</span></a>
+  <a class="ab wil" href="https://es.wikiloc.com/rutas-senderismo/parking-sansanet-ibon-de-estanes-cascada-de-espelunguere-circular-25907631" target="_blank"><span class="ab-i">🧭</span><span class="ab-t">Circular Sansanet → Ibón → Espélunguère (Wikiloc)</span><span class="ab-a">↗</span></a>
+
+  <div class="lbl">Tarde — Ruta a Logroño</div>
+  <div class="tc">
+    <div class="tr"><span class="tf">Sansanet → Canfranc (check-out)</span><span class="tt">~17min</span><span class="tk">15km</span></div>
+    <div class="tr"><span class="tf">Canfranc → Castiello de Jaca (N-330a)</span><span class="tt">~20min</span><span class="tk">22km</span></div>
+    <div class="tr"><span class="tf">Castiello → Logroño (A-23 / AP-68)</span><span class="tt">~1h40</span><span class="tk">148km</span></div>
+    <div class="tr"><span class="tf">TOTAL del día</span><span class="tt">~2h17</span><span class="tk">~185km</span></div>
+  </div>
+  <a class="ab maps" href="https://maps.google.com/maps?saddr=Canfranc+Estacion&daddr=Castiello+de+Jaca+to:Logrono&travelmode=driving" target="_blank"><span class="ab-i">🗺</span><span class="ab-t">Ruta Canfranc → Castiello → Logroño en Maps</span><span class="ab-a">↗</span></a>
+
   <div class="lbl">Horario</div>
   <div class="sc">
-    <div class="si"><span class="st">9:00h</span><span class="si-i">🏨</span><span class="si-t">Check-out del hotel. Cargar el coche.</span></div>
-    <div class="si"><span class="st">9:30h</span><span class="si-i">🚗</span><span class="si-t">Salida hacia Jaca y Madrid.</span></div>
-    <div class="si hi"><span class="st">14:00h</span><span class="si-i">🍽</span><span class="si-t"><strong>COMIDA — La Rinconada de Lorenzo, Zaragoza. (YA RESERVADO ✓)</strong></span></div>
-    <div class="si"><span class="st">~16:00h</span><span class="si-i">🏠</span><span class="si-t">Llegada a Madrid. ¡Buen regreso!</span></div>
+    <div class="si br"><span class="st">7:30h</span><span class="si-i">🍳</span><span class="si-t">Desayuno en el hotel (buffet incluido). Última mañana en Canfranc.</span></div>
+    <div class="si"><span class="st">8:00h</span><span class="si-i">🏨</span><span class="si-t">Check-out del Barceló Canfranc. Cargar el coche con todo el equipaje.</span></div>
+    <div class="si"><span class="st">8:20h</span><span class="si-i">🚗</span><span class="si-t">Salida hacia Sansanet por N-330 / Candanchú (~17 min).</span></div>
+    <div class="si"><span class="st">8:40h</span><span class="si-i">🅿</span><span class="si-t">Parking de Sansanet. Preparar mochila. Activar track Wikiloc.</span></div>
+    <div class="si"><span class="st">8:50h</span><span class="si-i">🥾</span><span class="si-t">Inicio ruta. Cruzar puente sobre Gave d'Aspe. Hayedo de Camille.</span></div>
+    <div class="si"><span class="st">10:30h</span><span class="si-i">💧</span><span class="si-t">Ibón de Estanés (1.777 m). Parada larga. Última foto del viaje.</span></div>
+    <div class="si"><span class="st">11:30h</span><span class="si-i">⬇</span><span class="si-t">Descenso al parking por el mismo camino.</span></div>
+    <div class="si"><span class="st">12:30h</span><span class="si-i">🚗</span><span class="si-t">Salida hacia Castiello de Jaca (~20 min por N-330a).</span></div>
+    <div class="si hi"><span class="st">14:30h</span><span class="si-i">🍽</span><span class="si-t"><strong>COMIDA — La Jacetania, Castiello de Jaca. RESERVAR.</strong></span></div>
+    <div class="si"><span class="st">16:15h</span><span class="si-i">🚗</span><span class="si-t">Salida hacia Logroño (A-23 / AP-68 · ~1h40).</span></div>
+    <div class="si"><span class="st">18:00h</span><span class="si-i">🏨</span><span class="si-t">Llegada Hotel Carlton Rioja. Check-in · Gran Vía Juan Carlos I, 5.</span></div>
+    <div class="si"><span class="st">19:30h</span><span class="si-i">🍷</span><span class="si-t">Paseo por la <strong>Calle Laurel</strong> — la calle del pintxo y el vino de La Rioja. A 550 m del hotel a pie.</span></div>
+    <div class="si"><span class="st">21:00h</span><span class="si-i">🍽</span><span class="si-t">Cena en Logroño (ver sugerencias).</span></div>
   </div>
-  <div class="lbl" style="margin-top:18px">Comida en Zaragoza · Ya Reservado</div>
-  <div class="rc res"><div class="rct"><div class="rcs g">■ Comida 14:00h · Ya Reservado ✓</div><div class="rcn">La Rinconada de Lorenzo — Zaragoza</div></div><div class="rcd">C/ La Salle 3, 50006 Zaragoza · Tel: +34 976 55 51 08. Referente absoluto de la cocina aragonesa en Zaragoza. Menú del día excelente, bodega con los mejores vinos de la D.O. Cariñena y Somontano. Reserva confirmada para el 3 de Abril a las 14:00h.</div><div class="rca"><a class="rab callg" href="tel:+34976555108">📞 +34 976 55 51 08</a></div></div>
-  <div class="pnrow"><button class="ab maps" data-go="pg-p5"><span class="ab-t">‹ Día 5</span></button><button class="ab maps" data-go="pg-ph" style="background:var(--grl);border-color:#86efac;color:#166534"><span class="ab-t">🏠 Inicio</span></button></div>
+
+  <div class="lbl" style="margin-top:18px">Restaurantes</div>
+  <div class="rc pend"><div class="rct"><div class="rcs o">■ Comida 14:30h · Pendiente reservar</div><div class="rcn">La Jacetania — Castiello de Jaca</div></div><div class="rcd">Av. Francia 2, 22710 Castiello de Jaca (10 min al sur de Canfranc, en la N-330a). Cocina pirenaica de mercado: migas de pastor, estofado de ciervo, manitas, chuletón. Menú ~€30-40. Tarta de queso casera espectacular. Google 4,6⭐ · Horario: 12:30-17:30 todos los días.</div><div class="rca"><a class="rab call" href="tel:+34619247419">📞 +34 619 24 74 19 (reservas)</a><a class="rab webr" href="https://restaurantelajacetania.es" target="_blank">Web ↗</a></div></div>
+  <div class="rc neu"><div class="rct"><div class="rcs b">■ Cena · Logroño — Calle Laurel</div><div class="rcn">Bar Soriano / Bar Blanco y Negro — Calle Laurel</div></div><div class="rcd">La Calle Laurel (a 550 m del hotel) es una de las mejores calles de pintxos de España. Bar Soriano: el champiñón más famoso de Logroño. Bar Blanco y Negro: los pintxos más creativos. Pasear, entrar donde haya bulla, pedir un rioja local y disfrutar.</div><div class="rca"><a class="rab webr" href="https://maps.google.com/maps?q=Calle+del+Laurel+Logrono" target="_blank">📍 Calle Laurel en Maps</a></div></div>
+
+  <div class="lbl">Hotel</div>
+  <div class="rc neu"><div class="rct"><div class="rcs b">■ Noche en Logroño</div><div class="rcn">Hotel Carlton Rioja (Mercure) ★★★★</div></div><div class="rcd">C/ Gran Vía Juan Carlos I 5, 26002 Logroño. En el centro de la ciudad, a 5 min a pie de la Calle Laurel y la Catedral. 112 habitaciones. Parking en el edificio. WiFi gratuito.</div><div class="rca"><a class="rab call" href="tel:+34941242100">📞 +34 941 24 21 00</a><a class="rab webr" href="https://www.hotelcarltonrioja.es" target="_blank">Web ↗</a></div></div>
+
+  <div class="pnrow"><button class="ab maps" data-go="pg-p5"><span class="ab-t">‹ Día 5</span></button><button class="ab maps" data-go="pg-p7"><span class="ab-t">Día 7 ›</span></button></div>
 </div>
 </div>
 
-<!-- ══════════════ PAGE: CHECKLIST ══════════════ -->
+<!-- ══════════════ PAGE: DÍA 7 ══════════════ -->
+<div class="pg" id="pg-p7">
+<div class="tb"><button class="tbb" data-go="pg-p6">‹</button><span class="tbt">Día 7 · Regreso a Madrid</span><button class="tbb" data-go="pg-ph">⌂</button></div>
+<div class="ct">
+  <div class="dh" style="background:linear-gradient(135deg,#2d5a27 0%,#4a8c42 100%)"><div class="dh-n">Día 7 · Sábado, 4 de Abril 2026</div><div class="dh-t">REGRESO A MADRID</div><div class="dh-s">Logroño → Madrid · ~330 km · ~3h30</div><div class="dh-chips"><span class="dh-chip">🚗 330 km</span><span class="dh-chip">🏠 Fin del viaje</span></div></div>
+  <div class="wx" id="wx-p7"><div class="wx-date">Sábado 4 de Abril · Logroño</div><div class="wx-loading"><div class="wx-spinner"></div>Cargando previsión...</div></div>
+  <a class="mb" href="https://www.meteoblue.com/es/tiempo/semana/logrono_espa%C3%B1a_3120219" target="_blank"><span class="mb-i">🌤</span><span class="mb-t">Previsión completa — Logroño</span><span class="mb-a">↗</span></a>
+
+  <div class="lbl">Ruta de vuelta</div>
+  <div class="tc">
+    <div class="tr"><span class="tf">Logroño → Zaragoza (AP-68/A-68)</span><span class="tt">~1h20</span><span class="tk">170km</span></div>
+    <div class="tr"><span class="tf">Zaragoza → Madrid (AP-2/A-2)</span><span class="tt">~2h10</span><span class="tk">300km</span></div>
+    <div class="tr"><span class="tf">TOTAL</span><span class="tt">~3h30</span><span class="tk">~330km</span></div>
+  </div>
+  <a class="ab maps" href="https://maps.google.com/maps?saddr=Logrono+La+Rioja&daddr=Madrid&travelmode=driving" target="_blank"><span class="ab-i">🗺</span><span class="ab-t">Logroño → Madrid en Google Maps</span><span class="ab-a">↗</span></a>
+
+  <div class="ib warn"><div class="ibt">⚠ Tips del regreso</div><ul>
+    <li>Sábado de vuelta de Semana Santa — tráfico intenso en A-2 por la tarde. Salir antes de las 11h para llegar a Madrid antes de las 15h.</li>
+    <li>Repostar en Logroño antes de salir — gasolina más barata que en autopista.</li>
+  </ul></div>
+
+  <div class="lbl">Horario</div>
+  <div class="sc">
+    <div class="si br"><span class="st">8:00-9h</span><span class="si-i">🍳</span><span class="si-t">Desayuno en el hotel (incluido). Último desayuno del viaje.</span></div>
+    <div class="si"><span class="st">9:30h</span><span class="si-i">🏨</span><span class="si-t">Check-out del Carlton Rioja.</span></div>
+    <div class="si"><span class="st">10:00h</span><span class="si-i">🚗</span><span class="si-t">Salida hacia Madrid por AP-68 / A-2.</span></div>
+    <div class="si"><span class="st">~11:20h</span><span class="si-i">🏙</span><span class="si-t">Zaragoza. Parada opcional: el Pilar y el Ebro desde el puente (~30 min).</span></div>
+    <div class="si"><span class="st">~13:30h</span><span class="si-i">🏠</span><span class="si-t">Llegada a Madrid. ¡Buen regreso — gran viaje!</span></div>
+  </div>
+
+  <div class="lbl">Si os apetece desayunar bien en Logroño antes de salir</div>
+  <div class="rc neu"><div class="rct"><div class="rcs b">■ Desayuno · Logroño</div><div class="rcn">Cafetería El Espolón — Logroño</div></div><div class="rcd">Paseo del Espolón, frente al parque central. Desayuno aragonés/riojano, terraza. A 5 min a pie del hotel. Ambiente tranquilo de mañana antes de la carretera.</div><div class="rca"><a class="rab webr" href="https://maps.google.com/maps?q=Paseo+del+Espolon+Logrono+cafeteria" target="_blank">📍 Ver en Maps</a></div></div>
+
+  <div class="pnrow"><button class="ab maps" data-go="pg-p6"><span class="ab-t">‹ Día 6</span></button><button class="ab maps" data-go="pg-ph" style="background:var(--grl);border-color:#86efac;color:#166534"><span class="ab-t">🏠 Inicio</span></button></div>
+</div>
+</div>
+
+
 <div class="pg" id="pg-pc">
 <div class="tb"><button class="tbb" data-go="pg-ph">‹</button><span class="tbt">Checklist Equipamiento</span><button class="tbb" data-go="pg-ph">⌂</button></div>
 <div class="ct">
@@ -564,6 +699,8 @@ function goPage(id) {
   to.classList.add('on');
   cur = id;
   window.scrollTo(0, 0);
+  // Trigger weather load for day pages
+  document.dispatchEvent(new CustomEvent('wx-page-changed', {detail: id}));
 }
 
 // ── Tap detection ─────────────────────────────────────────
@@ -613,7 +750,111 @@ function tap(el, e) {
     }
     el = el.parentElement;
   }
+// ── WEATHER FORECAST — Open-Meteo API ────────────────────
+// Coordinates and dates for each day
+var WX_DAYS = {
+  'p1': { lat: 42.75,  lon: -0.52,  date: '2026-03-29', place: 'Canfranc Estación' },
+  'p2': { lat: 42.57,  lon: -0.55,  date: '2026-03-30', place: 'Monte Oroel / Jaca' },
+  'p3': { lat: 43.38,  lon: -0.37,  date: '2026-03-31', place: 'Pau' },
+  'p4': { lat: 42.62,  lon: -0.12,  date: '2026-04-01', place: 'Torla-Ordesa' },
+  'p5': { lat: 42.74,  lon: -0.76,  date: '2026-04-02', place: 'Hecho' },
+  'p6': { lat: 42.75,  lon: -0.52,  date: '2026-04-03', place: 'Ibón de Estanés / Canfranc' },
+  'p7': { lat: 42.47,  lon: -2.45,  date: '2026-04-04', place: 'Logroño' }
+};
+
+// WMO weather code to Spanish description + emoji
+function wmoInfo(code) {
+  var map = {
+    0:  ['☀️','Despejado'],
+    1:  ['🌤','Mayormente despejado'],
+    2:  ['⛅','Parcialmente nublado'],
+    3:  ['☁️','Nublado'],
+    45: ['🌫','Niebla'],
+    48: ['🌫','Niebla con escarcha'],
+    51: ['🌦','Llovizna ligera'],
+    53: ['🌦','Llovizna moderada'],
+    55: ['🌧','Llovizna intensa'],
+    61: ['🌧','Lluvia ligera'],
+    63: ['🌧','Lluvia moderada'],
+    65: ['🌧','Lluvia intensa'],
+    71: ['🌨','Nieve ligera'],
+    73: ['🌨','Nieve moderada'],
+    75: ['❄️','Nieve intensa'],
+    77: ['🌨','Granizo'],
+    80: ['🌦','Chubascos ligeros'],
+    81: ['🌧','Chubascos moderados'],
+    82: ['⛈','Chubascos fuertes'],
+    85: ['🌨','Chubascos de nieve'],
+    95: ['⛈','Tormenta'],
+    96: ['⛈','Tormenta con granizo'],
+    99: ['⛈','Tormenta fuerte']
+  };
+  return map[code] || ['🌡️','Variable'];
 }
+
+var wxCache = {};
+
+function loadWeather(pageId) {
+  var d = WX_DAYS[pageId];
+  if (!d) return;
+  var el = document.getElementById('wx-' + pageId);
+  if (!el) return;
+
+  // Already loaded this session
+  if (wxCache[pageId]) {
+    renderWeather(el, wxCache[pageId], d);
+    return;
+  }
+
+  var url = 'https://api.open-meteo.com/v1/forecast'
+    + '?latitude=' + d.lat
+    + '&longitude=' + d.lon
+    + '&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_probability_max,windspeed_10m_max'
+    + '&timezone=Europe%2FMadrid'
+    + '&start_date=' + d.date
+    + '&end_date=' + d.date;
+
+  fetch(url)
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (!data.daily || !data.daily.temperature_2m_max) throw new Error('no data');
+      var result = {
+        tmax: Math.round(data.daily.temperature_2m_max[0]),
+        tmin: Math.round(data.daily.temperature_2m_min[0]),
+        code: data.daily.weathercode[0],
+        rain: data.daily.precipitation_probability_max[0],
+        wind: Math.round(data.daily.windspeed_10m_max[0])
+      };
+      wxCache[pageId] = result;
+      renderWeather(el, result, d);
+    })
+    .catch(function() {
+      el.innerHTML = '<div class="wx-date">' + d.place + '</div>'
+        + '<div class="wx-err">⚠ No se pudo cargar la previsión. <a href="https://www.meteoblue.com" target="_blank" style="color:#7eb3d8">Ver en Meteoblue ↗</a></div>';
+    });
+}
+
+function renderWeather(el, r, d) {
+  var info = wmoInfo(r.code);
+  var rainTxt = r.rain !== null ? '💧 Prob. lluvia: <strong>' + r.rain + '%</strong>' : '';
+  var windTxt = r.wind !== null ? '💨 Viento: <strong>' + r.wind + ' km/h</strong>' : '';
+  el.innerHTML = ''
+    + '<div class="wx-date">' + d.place + '</div>'
+    + '<div class="wx-inner">'
+    +   '<div class="wx-icon">' + info[0] + '</div>'
+    +   '<div class="wx-data">'
+    +     '<div class="wx-temps">' + r.tmax + '°C <span>/ ' + r.tmin + '°C mín</span></div>'
+    +     '<div class="wx-desc">' + info[1] + '</div>'
+    +     '<div class="wx-extra">' + [rainTxt, windTxt].filter(Boolean).join(' &nbsp;·&nbsp; ') + '</div>'
+    +   '</div>'
+    + '</div>';
+}
+
+// Hook into goPage to load weather when a day page opens
+// Done via event after navigation, not monkey-patching
+document.addEventListener('wx-page-changed', function(e) {
+  if (WX_DAYS[e.detail]) loadWeather(e.detail);
+});
 </script>
 </body>
 </html>
